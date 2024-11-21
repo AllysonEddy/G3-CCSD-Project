@@ -27,5 +27,8 @@ public class ProductsService {
         return productsRepository.save(products);
     }
 
+    public void deleteDrinks(String id) {
+        productsRepository.deleteById(id);
+    }
 
 }
