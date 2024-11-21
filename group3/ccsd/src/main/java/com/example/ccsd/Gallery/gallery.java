@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "gallery")
 public class gallery {
     @Id
-    private int galleryId;
+    private String galleryId;
     private String logo;
     private String description;
     private String image;
@@ -20,11 +20,11 @@ public class gallery {
         this.text = text;
     }
 
-    public int getGalleryId() {
+    public String getGalleryId() {
         return galleryId;
     }
 
-    public void setGalleryId(int galleryId) {
+    public void setGalleryId(String galleryId) {
         this.galleryId = galleryId;
     }
 
