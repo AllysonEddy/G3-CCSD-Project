@@ -1,11 +1,22 @@
 package com.example.ccsd.WebsiteImages;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
+import java.util.*;
 
+@Document(collection = "website_images")
 public class WebsiteImages {
-    private List<String> foodImages;   // Store multiple image paths for food
-    private List<String> drinkImages; // Store multiple image paths for drinks
-    private List<String> specialImages; // Store multiple image paths for specials
+    @Id
+    private String id;
+    private List<String> foodImages;
+    private List<String> drinkImages;
+    private List<String> specialImages;
+
+    public WebsiteImages (String foodImage, String drinkImage, String specialImage) {
+        this.foodImages = new ArrayList<>();
+        this.drinkImages = new ArrayList<>();
+        this.specialImages = new ArrayList<>();
+    }
 
     public List<String> getFoodImages() {
         return this.foodImages;
