@@ -9,28 +9,28 @@ import java.util.Optional;
 public class galleryService {
     
     @Autowired
-    private galleryRepository galleryRepository;
+    private galleryRepo galleryRepo;
 
     // Getting all gallery
     public List<gallery> getAllGallery() {
-        return galleryRepository.findAll();
+        return galleryRepo.findAll();
     }
 
     // Getting single gallery
     public Optional<gallery> getGalleryBygalleryId(String galleryId) {
-        return galleryRepository.findById(galleryId);
+        return galleryRepo.findById(galleryId);
     }
 
     // Creating new data in repository
 
     public gallery addGallery(gallery gallery) {
-        return galleryRepository.save(gallery);
+        return galleryRepo.save(gallery);
     }
 
 
     // Deleting
     
     public void deleteGallery(String galleryId) {
-        galleryRepository.deleteById(galleryId);
+        galleryRepo.deleteById(galleryId);
     }
 }
