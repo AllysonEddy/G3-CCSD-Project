@@ -1,6 +1,13 @@
 package com.example.ccsd.Products;
-import com.example.ccsd.Products.products;
 
-public class productsService {
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ProductsService {
     
+    @Autowired
+    private ProductsRepository productsRepository;
+
 }
