@@ -3,8 +3,8 @@ package com.example.ccsd.Products;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Products")
-public class Products {
+@Document(collection = "Product")
+public class Product {
     @Id
     private String id;
     private String drinks;
@@ -13,11 +13,11 @@ public class Products {
     // private String specialItems;
     // private String specialItemsDesc;
 
-    public Products(){
+    public Product(){
         
     }
 
-    public Products(String drinks, Double drinksPrice, String drinksDesc) {
+    public Product(String drinks, Double drinksPrice, String drinksDesc) {
         this.drinks = drinks;
         this.drinksPrice = drinksPrice;
         this.drinksDesc = drinksDesc;

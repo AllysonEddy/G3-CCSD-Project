@@ -15,31 +15,31 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/products")
-public class ProductsController {
+public class ProductController {
     
     @Autowired
-    private ProductsService productsService;
+    private ProductService productService;
 
     @GetMapping("/drinks")
-    public List<Products> getAllDrinks(){
-        return productsService.getAllDrinks();
+    public List<Product> getAllDrinks(){
+        return productService.getAllDrinks();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Products> getDrinksById(@PathVariable String id) {
-        return productsService.getDrinksById(id)
+    public ResponseEntity<Product> getDrinksById(@PathVariable String id) {
+        return productService.getDrinksById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Products addDrinks(@RequestBody Products products) {
-        return productsService.addDrinks(products);
+    public Product addDrinks(@RequestBody Product products) {
+        return productService.addDrinks(products);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProducts(@PathVariable String id) {
-        productsService.deleteDrinks(id);
+        productService.deleteDrinks(id);
         return ResponseEntity.noContent().build();
     }
 }
