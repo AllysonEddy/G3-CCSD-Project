@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/gallery")
-public class galleryController {
+public class galleryControll {
     @Autowired
     private galleryService galleryService;
 
