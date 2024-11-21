@@ -28,7 +28,7 @@ public class galleryController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-
+        //comment
     @PostMapping
     public gallery addGallery(@RequestBody gallery gallery) {
         return galleryService.addGallery(gallery);
