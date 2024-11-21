@@ -21,25 +21,25 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/drinks")
-    public List<Product> getAllDrinks(){
-        return productService.getAllDrinks();
+    public List<Product> getAllProducts(){
+        return productService.getAllProduct();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getDrinksById(@PathVariable String id) {
-        return productService.getDrinksById(id)
+    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+        return productService.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Product addDrinks(@RequestBody Product products) {
-        return productService.addDrinks(products);
+    @PostMapping("/addProduct")
+    public Product addProducts(@RequestBody Product products) {
+        return productService.addProduct(products);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProducts(@PathVariable String id) {
-        productService.deleteDrinks(id);
+        productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 }
