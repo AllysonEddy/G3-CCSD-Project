@@ -1,6 +1,11 @@
 package com.example.ccsd.Gallery;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "gallery")
 public class gallery {
+    @Id
+    private int galleryId;
     private String logo;
     private String description;
     private String image;
@@ -13,6 +18,14 @@ public class gallery {
         this.image = image;
         this.title = title;
         this.text = text;
+    }
+
+    public int getGalleryId() {
+        return galleryId;
+    }
+
+    public void setGalleryId(int galleryId) {
+        this.galleryId = galleryId;
     }
 
     public String getLogo() {
