@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/api/webimages")
 public class WebImageController {
@@ -21,18 +22,18 @@ public class WebImageController {
 
     @GetMapping
     public List<WebsiteImages> getAllImage() {
-        return webImageService.getAllImages();
+        return webImageService.getAllImages(); //link with method in webimageservice
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<WebsiteImages> getImageById(@PathVariable String id) {
-        return webImageService.getImageById(id)
+        return webImageService.getImageById(id)   //link with method in webimageservice
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public WebsiteImages addImage(@RequestBody WebsiteImages newImage) {
+    public WebsiteImages addImage(@RequestBody WebsiteImages newImage) { //link with method in webimageservice
         return webImageService.addNewImage(newImage);
     }
 
@@ -46,7 +47,7 @@ public class WebImageController {
     // }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteImage(@PathVariable String id) {
+    public ResponseEntity<Void> deleteImage(@PathVariable String id) {  //link with method in webimageservice
         webImageService.deleteImage(id);
         return ResponseEntity.noContent().build();
     }

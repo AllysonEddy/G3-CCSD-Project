@@ -1,18 +1,33 @@
 package com.example.ccsd.Products;
 
-public class products {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "Products")
+public class Products {
+    @Id
+    private String id;
     private String drinks;
     private Double drinksPrice;
     private String drinksDesc;
-    private String specialItems;
-    private String specialItemsDesc;
+    // private String specialItems;
+    // private String specialItemsDesc;
 
-    public products(String drinks, Double drinksPrice, String drinksDesc, String specialItems, String specialItemsDesc) {
+    public products(){
+        
+    }
+
+    public products(String drinks, Double drinksPrice, String drinksDesc) {
         this.drinks = drinks;
         this.drinksPrice = drinksPrice;
         this.drinksDesc = drinksDesc;
-        this.specialItems = specialItems;
-        this.specialItemsDesc = specialItemsDesc;
+        // this.specialItems = specialItems;
+        // this.specialItemsDesc = specialItemsDesc;
+    }
+
+    //getter
+    public String getIdDrinks() {
+        return id;
     }
 
     public String getDrinks() {
@@ -29,12 +44,17 @@ public class products {
 
 
 
-    public String getSpecialItems(){
-        return specialItems;
-    }
+    // public String getSpecialItems(){
+    //     return specialItems;
+    // }
     
-    public String getSpecialItemsDesc(){
-        return specialItemsDesc;
+    // public String getSpecialItemsDesc(){
+    //     return specialItemsDesc;
+    // }
+
+    //Setter
+    public void getIdDrinks(String id) {
+        this.id = id;
     }
 
     public void setDrinks(String drinks) {
@@ -50,24 +70,13 @@ public class products {
         this.drinksDesc = drinksDesc;
     }
 
-    public void setSpecialItems(String specialItems) {
-        this.specialItems = specialItems;
-    }
+    // public void setSpecialItems(String specialItems) {
+    //     this.specialItems = specialItems;
+    // }
 
-    public void setSpecialItemsDesc(String specialItemsDesc) {
-        this.specialItemsDesc = specialItemsDesc;
-    }
+    // public void setSpecialItemsDesc(String specialItemsDesc) {
+    //     this.specialItemsDesc = specialItemsDesc;
+ //   }
 
 
-    public static void main(String[] args) {
-
-        products p = new products("0", 0.00, "drinksDesc", "specialItems", "specialItemsDesc");
-        p.setDrinks("Coke");
-        p.setDrinksPrice(1.5);
-        p.setDrinksDesc("A refreshing and popular choice.");
-        p.setSpecialItems("Soda");
-        p.setSpecialItemsDesc("A popular choice for those looking to enjoy a refreshing drink.");
-
-        System.out.println("\n" + p.getDrinks() + "\n" + p.getDrinksPrice() + "\n" + p.getDrinksDesc() + "\n");
-    }
 }
