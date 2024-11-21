@@ -17,7 +17,7 @@ public class websiteTextsService {
     }
 
     // Gettin single websiteText
-    public Optional<WebsiteTexts> getwebsiteTextsByTitle(String id) {
+    public Optional<WebsiteTexts> getwebsiteTextsById(String id) {
       return websitetextRepository.findById(id);
     }
 

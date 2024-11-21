@@ -24,8 +24,8 @@ public class websitetextsController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<WebsiteTexts> getwebsiteTextsByTitle(@PathVariable String id) {
-    return websitetextsService.getwebsiteTextsByTitle(id)
+  public ResponseEntity<WebsiteTexts> getwebsiteTextsById(@PathVariable String id) {
+    return websitetextsService.getwebsiteTextsById(id)
             .map(ResponseEntity::ok)
             .orElse(ResponseEntity.notFound().build());
   }
