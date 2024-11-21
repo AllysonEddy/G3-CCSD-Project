@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GalleryService {
+public class galleryService {
     
     @Autowired
-    private GalleryRepository galleryRepository;
+    private galleryRepository galleryRepository;
 
     // Getting all gallery
     public List<gallery> getAllGallery() {
@@ -17,7 +17,7 @@ public class GalleryService {
     }
 
     // Getting single gallery
-    public Optional<gallery> getGalleryBygalleryId(int galleryId) {
+    public Optional<gallery> getGalleryBygalleryId(String galleryId) {
         return galleryRepository.findById(galleryId);
     }
 
@@ -30,7 +30,7 @@ public class GalleryService {
 
     // Deleting
     
-    public void deleteGallery(int galleryId) {
+    public void deleteGallery(String galleryId) {
         galleryRepository.deleteById(galleryId);
     }
 }

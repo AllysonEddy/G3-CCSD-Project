@@ -1,8 +1,9 @@
 package com.example.ccsd.WebsiteImages;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.*;
 
 @Document(collection = "website_images")
 public class WebsiteImages {
@@ -16,6 +17,12 @@ public class WebsiteImages {
         this.foodImages = new ArrayList<>();
         this.drinkImages = new ArrayList<>();
         this.specialImages = new ArrayList<>();
+    }
+    public String getId (){
+        return this.id;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public List<String> getFoodImages() {
