@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.DeleteMapping;
->>>>>>> fb074295802d1e5f8a9abc1ada96ed237021c7ed
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,22 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductsController {
     
     @Autowired
-    private productsService productsService;
+    private ProductsService productsService;
 
     @GetMapping("/drinks")
-    public List<products> getAllDrinks(){
+    public List<Products> getAllDrinks(){
         return productsService.getAllDrinks();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<products> getDrinksById(@PathVariable String id) {
+    public ResponseEntity<Products> getDrinksById(@PathVariable String id) {
         return productsService.getDrinksById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public products addDrinks(@RequestBody products products) {
+    public Products addDrinks(@RequestBody Products products) {
         return productsService.addDrinks(products);
     }
 

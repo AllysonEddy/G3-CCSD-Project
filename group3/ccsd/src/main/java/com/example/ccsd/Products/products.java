@@ -13,11 +13,11 @@ public class Products {
     // private String specialItems;
     // private String specialItemsDesc;
 
-    public products(){
+    public Products(){
         
     }
 
-    public products(String drinks, Double drinksPrice, String drinksDesc) {
+    public Products(String drinks, Double drinksPrice, String drinksDesc) {
         this.drinks = drinks;
         this.drinksPrice = drinksPrice;
         this.drinksDesc = drinksDesc;

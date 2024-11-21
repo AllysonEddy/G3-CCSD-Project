@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jms.activemq.ActiveMQProperties;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,18 +13,18 @@ public class ProductsService {
     private ProductsRepository productsRepository;
 
     // Getting all books
-    public List<products> getAllDrinks() {
+    public List<Products> getAllDrinks() {
         return productsRepository.findAll();
     }
 
     // Getting single boks
-    public Optional<products> getDrinksById(String id) {
+    public Optional<Products> getDrinksById(String id) {
         return productsRepository.findById(id);
     }
 
     // Creating new data in repository
 
-    public products addDrinks(products products) {
+    public Products addDrinks(Products products) {
         return productsRepository.save(products);
     }
 
