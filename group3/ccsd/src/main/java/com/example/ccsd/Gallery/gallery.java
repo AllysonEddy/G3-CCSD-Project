@@ -11,7 +11,7 @@ public class gallery {
     private String image;
     private String title;
     private String text;
-
+    //constuctor
     public gallery(String logo, String description, String image, String title, String text) {
         this.logo = logo;
         this.description = description;
