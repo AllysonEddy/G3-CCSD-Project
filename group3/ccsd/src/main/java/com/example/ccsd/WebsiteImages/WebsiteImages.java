@@ -13,15 +13,22 @@ public class WebsiteImages {
     private Date uploadDate;
     private String tags;
 
-    public WebsiteImages (){} //
-    public WebsiteImages (String itemImage, Date uploadDate, String tags) {
-        this.itemImages = itemImage;
+    // Default constructor
+    public WebsiteImages() {}
+
+    // Parameterized constructor
+    public WebsiteImages(String id, String itemImages, Date uploadDate, String tags) {
+        this.id = id;
+        this.itemImages = itemImages;
         this.uploadDate = uploadDate;
         this.tags = tags;
     }
-    public String getId (){
+
+    // Getters and setters
+    public String getId() {
         return this.id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -29,19 +36,26 @@ public class WebsiteImages {
     public String getItemImages() {
         return this.itemImages;
     }
+
     public void setItemImages(String itemImages) {
         this.itemImages = itemImages;
     }
-    public Date uploadDate() {
-        return this.uploadDate;
+
+    public Date getUploadDate() {
+        // Return a defensive copy to prevent external modification
+        return this.uploadDate != null ? new Date(this.uploadDate.getTime()) : null;
     }
-    public void setuploadDate(Date uploadDate) {
-        this.uploadDate = uploadDate;
+
+    public void setUploadDate(Date uploadDate) {
+        // Use a defensive copy to prevent external modification
+        this.uploadDate = uploadDate != null ? new Date(uploadDate.getTime()) : null;
     }
-    public String gettags() {
+
+    public String getTags() {
         return this.tags;
     }
-    public void settags(String tags) {
+
+    public void setTags(String tags) {
         this.tags = tags;
     }
 }
