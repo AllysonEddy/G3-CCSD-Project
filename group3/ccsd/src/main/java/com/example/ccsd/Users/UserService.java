@@ -15,6 +15,10 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Optional<users> getUserID(String id){
+        return userRepository.findById(id);
+    }
+
     public Optional<users> getUserByEmail(String userEmail){
         return userRepository.findById(userEmail);
     }
