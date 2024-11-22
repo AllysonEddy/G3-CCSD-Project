@@ -13,6 +13,7 @@ public class gallery {
     private String image;
     private Date date;
 
+    public gallery() {}
     public gallery(String title, String description, String image, Date date) {
         this.title = title;
         this.description = description;

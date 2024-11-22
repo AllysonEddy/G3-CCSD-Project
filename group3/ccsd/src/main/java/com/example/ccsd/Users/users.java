@@ -8,15 +8,19 @@ public class users {
         private String id;
         private String FirstName;
         private String LastName;
+        private String userName;
         private String phoneNumber;
         private String userEmail;
         private String userPassword;
         private String userimage;
 
-        public users( String firstName, String lastName, String phoneNumber, String userEmail, String userPassword, String userImage) {
+        public users() {}
+
+        public users(String firstName, String lastName,String userName, String phoneNumber, String userEmail, String userPassword, String userImage) {
             this.FirstName=firstName;
             this.LastName=lastName;
             this.phoneNumber=phoneNumber;
+            this.userName=userName;
             this.userEmail=userEmail;
             this.userPassword=userPassword;
             this.userimage=userImage;
@@ -38,7 +42,6 @@ public class users {
             this.FirstName = firstName;
         }
     
-       
         public String getLastName() {
             return LastName;
         }
@@ -46,7 +49,14 @@ public class users {
         public void setLastName(String lastName) {
             this.LastName = lastName;
         }
-    
+
+        public String getuserName(){
+            return userName;
+        }
+        
+        public void setuserName(String userName){
+            this.userName=userName;
+        }
         
         public String getPhoneNumber() {
             return phoneNumber;

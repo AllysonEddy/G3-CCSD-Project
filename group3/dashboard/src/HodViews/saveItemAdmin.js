@@ -5,7 +5,7 @@ axios.defaults.withCredentials = true;
 const API_BASE_URL = 'http://localhost:8082';
 
 const SaveItemsAdmin = {
-  async addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image) {
+  async addTeamSave(email, password, firstName, lastName, phone, userName, image) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
@@ -17,15 +17,12 @@ const SaveItemsAdmin = {
       formData.append('first_name', firstName);
       formData.append('last_name', lastName);
       formData.append('phone', phone);
-      formData.append('address', address);
-      formData.append('role', role);
-      formData.append('dob', dob);
       if (image) {
         formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
       }
 
       const response = await axios.post(
-        `${API_BASE_URL}/add_team/`,
+        `${API_BASE_URL}/api/users`,
         formData,
         {
           headers: {
@@ -185,28 +182,21 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addWebsiteTextAdmin( postShortDescription, tag, title, postSlug, content, status, date, image, place) {
+  async addWebsiteTextAdmin(description, title, status) {
     const token = await localStorage.getItem('jwtToken');
     const username = await localStorage.getItem('userName');
 
     try {
       const formData = new FormData();
       formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
+      formData.append('description', description);
       formData.append('title', title);
-      formData.append('postSlug', postSlug);
-      formData.append('content', content);
+     
       formData.append('status', status);
-      formData.append('date', date);
-
-      if (image) {
-        formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
-      }
-
+    
+   
       const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
+        `${API_BASE_URL}/api/websitetext`,
         formData,
         {
           headers: {
