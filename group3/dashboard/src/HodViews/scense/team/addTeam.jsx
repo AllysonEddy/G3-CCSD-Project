@@ -30,6 +30,7 @@ const AddTeam = () => {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastname] = useState("");
+    const [userName, setuserName]=useState("");
     const [phone, setPhone] = useState("");
     
 
@@ -50,7 +51,7 @@ const AddTeam = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, image);
+          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, userName, phone, image);
           
           if (success) {
             navigate("/dashboard-admin");
@@ -83,6 +84,13 @@ const AddTeam = () => {
                 onChange={(e) => setLastname(e.target.value)}
                 label="Enter Your Last Name"
                 id="last_name"
+                sx={{ m: 1, width: '30%' }}
+                variant="filled"
+                />
+                <TextField
+                onChange={(e) => setuserName(e.target.value)}
+                label="Enter Desired User Name"
+                id="user_name"
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
