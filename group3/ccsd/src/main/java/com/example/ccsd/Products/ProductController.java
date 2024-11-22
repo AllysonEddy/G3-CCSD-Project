@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -21,25 +22,25 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/drinks")
-    public List<Product> getAllDrinks(){
-        return productService.getAllDrinks();
+    public List<Product> getAllProducts(){
+        return productService.getAllProduct();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getDrinksById(@PathVariable String id) {
-        return productService.getDrinksById(id)
+    public ResponseEntity<Product> getProductById(@PathVariable String id) {
+        return productService.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public Product addDrinks(@RequestBody Product products) {
-        return productService.addDrinks(products);
+    @PostMapping("/addProduct")
+    public Product addProducts(@RequestBody Product products) {
+        return productService.addProduct(products);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProducts(@PathVariable String id) {
-        productService.deleteDrinks(id);
+        productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
 }

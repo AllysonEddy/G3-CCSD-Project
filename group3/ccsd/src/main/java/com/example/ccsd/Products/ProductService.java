@@ -12,22 +12,22 @@ public class ProductService {
     private ProductRepository productRepository;
 
     // Getting all products
-    public List<Product> getAllDrinks() {
+    public List<Product> getAllProduct() {
         return productRepository.findAll();
     }
 
     // Getting single boks
-    public Optional<Product> getDrinksById(String id) {
+    public Optional<Product> getProductById(String id) {
         return productRepository.findById(id);
     }
 
     // Creating new data in repository
 
-    public Product addDrinks(Product products) {
+    public Product addProduct(Product products) {
         return productRepository.save(products);
     }
 
-    public void deleteDrinks(String id) {
+    public void deleteProduct(String id) {
         productRepository.deleteById(id);
     }
 

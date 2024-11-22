@@ -17,8 +17,8 @@ public class galleryService {
     }
 
     // Getting single gallery
-    public Optional<gallery> getGalleryBygalleryId(String galleryId) {
-        return galleryRepo.findById(galleryId);
+    public Optional<gallery> getGalleryById(String id) {
+        return galleryRepo.findById(id);
     }
 
     // Creating new data in repository
@@ -30,7 +30,7 @@ public class galleryService {
 
     // Deleting
     
-    public void deleteGallery(String galleryId) {
-        galleryRepo.deleteById(galleryId);
+    public void deleteGallery(String id) {
+        galleryRepo.deleteById(id);
     }
 }

@@ -23,28 +23,13 @@ import CK from '../../../Editor/ck';
 const AddWebsiteGallery = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [image, setImage] = useState(null);
-
-    const [categories, setCategories] = useState([]); // to store the list of categories    
-    const [postShortDescription, setPostShortDescription] = useState(null);
-    const [tag, setTag] = useState(null);
     const [title, setTitle] = useState(null);
-    const [postSlug, setPostSlug] = useState(null);
-    const [status, setStatus] = useState(null);
+    const [image, setImage] = useState(null);
+    const [Description, setDescription] = useState(null);
+   // const [postSlug, setPostSlug] = useState(null);
     const [date, setDate] = useState(null);
-    const navigate = useNavigate();
-    const [openAiImage, setOpenAiImage] = useState(false);
-    const [place, setPlace] = useState(null);
 
-    const functionOpenAiImage=() =>{
-        setOpenAiImage(true);
-    }
-    const functionCloseAiImage=() =>{
-        setOpenAiImage(false);
-    }
-    
 
-    
 
     const editor = useRef(null)
     const [content, setContent] = useState(null);
@@ -54,8 +39,8 @@ const AddWebsiteGallery = () => {
       };
       
 
-      const handleChangeplace = (event) => {
-        setPlace(event.target.value);
+      const handleChangeTitle = (event) => {
+        setTitle(event.target.value);
       };
     
 
@@ -68,7 +53,7 @@ const AddWebsiteGallery = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addGalleryAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+          const success = await SaveItemsAdmin.addGalleryAdmin(title, image, Description, date);
           
           if (success) {
             navigate("/website-components-admin");

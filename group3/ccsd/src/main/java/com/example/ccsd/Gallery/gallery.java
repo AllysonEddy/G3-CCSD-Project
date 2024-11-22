@@ -1,39 +1,39 @@
 package com.example.ccsd.Gallery;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Date;
 
 @Document(collection = "gallery")
+
 public class gallery {
     @Id
-    private String galleryId;
-    private String logo;
+    private String id;
+    private String title;
     private String description;
     private String image;
-    private String title;
-    private String text;
-    //constuctor
-    public gallery(String logo, String description, String image, String title, String text) {
-        this.logo = logo;
+    private Date date;
+
+    public gallery(String title, String description, String image, Date date) {
+        this.title = title;
         this.description = description;
         this.image = image;
+        this.date = date;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
         this.title = title;
-        this.text = text;
-    }
-
-    public String getGalleryId() {
-        return galleryId;
-    }
-
-    public void setGalleryId(String galleryId) {
-        this.galleryId = galleryId;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
     }
 
     public String getDescription() {
@@ -52,19 +52,11 @@ public class gallery {
         this.image = image;
     }
 
-    public String getTitle() {
-        return title;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

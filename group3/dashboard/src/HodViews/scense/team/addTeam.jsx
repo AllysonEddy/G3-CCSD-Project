@@ -31,10 +31,9 @@ const AddTeam = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastname] = useState("");
     const [phone, setPhone] = useState("");
-    const [address, setAddress] = useState("");
-    const [dob, setDob] = useState("");
-    const [role, setRole] = useState("");
-    const [userName, setuserName] = useState("");
+    
+
+    
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -51,7 +50,7 @@ const AddTeam = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, address, role, userName, dob, image);
+          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, image);
           
           if (success) {
             navigate("/dashboard-admin");
@@ -79,20 +78,7 @@ const AddTeam = () => {
                 sx={{ m: 1, width: '30%' }}
                 variant="filled"
                 />
-                <TextField
-                onChange={(e) => setuserName(e.target.value)}
-                label="Enter Desired User Name"
-                id="user_name"
-                sx={{ m: 1, width: '30%' }}
-                variant="filled"
-                />
-                <TextField
-                onChange={(e) => setRole(e.target.value)}
-                label="Enter Team Member Role"
-                id="role"
-                sx={{ m: 1, width: '30%' }}
-                variant="filled"
-                />
+                
                 <TextField
                 onChange={(e) => setLastname(e.target.value)}
                 label="Enter Your Last Name"
@@ -165,17 +151,6 @@ const AddTeam = () => {
 
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
-                <FilledInput
-                   onChange={(e) => setDob(e.target.value)}
-                    id='dob'
-                    type='date'
-                                        
-                >
-
-                </FilledInput>
-                <FormHelperText id="filled-dob-helper-text">Date of Birth</FormHelperText>
-                </FormControl>
-                <FormControl sx={{ m: 1, width: '30%' }} variant="filled">
                     <InputLabel htmlFor="image-upload">Upload Image</InputLabel>
                     <Input
                         accept="image/*"
@@ -198,25 +173,7 @@ const AddTeam = () => {
                     <FormHelperText id="image-upload-helper-text">Select an image file</FormHelperText>
                 </FormControl>
                 <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
-                <InputLabel htmlFor="filled-adornment-address">Address</InputLabel>
-                <FilledInput
-                   onChange={(e) => setAddress(e.target.value)}
-                    id='address'
-                    type='text'
-                    endAdornment = {
-                        <InputAdornment position='end'>
-                            <IconButton
-                                aria-label="address"
-                                edge="end"                                        
-                            >
-                            <LocationOnIcon></LocationOnIcon>
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    
-                >
-
-                </FilledInput>
+                
                 <Button
                 type="submit"
                 fullWidth

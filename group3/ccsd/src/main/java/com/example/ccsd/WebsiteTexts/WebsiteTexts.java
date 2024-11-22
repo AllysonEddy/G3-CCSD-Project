@@ -3,23 +3,21 @@ package com.example.ccsd.WebsiteTexts;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
 @Document(collection = "websitetext")
 public class WebsiteTexts {
   @Id
   private String id;
-  private String description;
   private String title;
-  private String content;
+  private String description;
+  private int status; // Assuming status is stored as an integer (e.g., 0 for draft, 1 for publish)
 
-
-  //Constructors
+  // Constructors
   public WebsiteTexts() {}
 
-  public WebsiteTexts(String title, String description, String content) {
+  public WebsiteTexts(String title, String description, int status) {
     this.title = title;
     this.description = description;
-    this.content = content;
+    this.status = status;
   }
 
   public String getId() {
@@ -30,14 +28,6 @@ public class WebsiteTexts {
     this.id = id;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
   public String getTitle() {
     return title;
   }
@@ -46,11 +36,19 @@ public class WebsiteTexts {
     this.title = title;
   }
 
-  public String getContent() {
-    return content;
+  public String getDescription() {
+    return description;
   }
 
-  public void setContent(String content) {
-    this.content = content;
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public int getStatus() {
+    return status;
+  }
+
+  public void setStatus(int status) {
+    this.status = status;
   }
 }

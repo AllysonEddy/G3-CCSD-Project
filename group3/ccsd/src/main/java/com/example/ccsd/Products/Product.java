@@ -1,82 +1,110 @@
 package com.example.ccsd.Products;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Product")
+@Document(collection = "Products")
 public class Product {
     @Id
     private String id;
-    private String drinks;
-    private Double drinksPrice;
-    private String drinksDesc;
-    // private String specialItems;
-    // private String specialItemsDesc;
+    private String productTitle;
+    private String productSlug;
+    private Date productPublishDate;
+    private String productStatus;
+    private String productTags;
+    private int productPlace;
+    private String productDesc;
+    private String productFile;
+
 
     public Product(){
         
     }
 
-    public Product(String drinks, Double drinksPrice, String drinksDesc) {
-        this.drinks = drinks;
-        this.drinksPrice = drinksPrice;
-        this.drinksDesc = drinksDesc;
-        // this.specialItems = specialItems;
-        // this.specialItemsDesc = specialItemsDesc;
+    public Product(String productTitle, String productSlug, Date productPublishDate, String productStatus, String productTags, int productPlace, String productDesc, String productFile) {
+        this.productTitle = productTitle;
+        this.productSlug = productSlug;
+        this.productPublishDate = productPublishDate;
+        this.productStatus = productStatus;
+        this.productTags = productTags;
+        this.productPlace = productPlace;
+        this.productDesc = productDesc;
+        this.productFile = productFile;
+
     }
 
     //getter
-    public String getIdDrinks() {
+    public String getId() {
         return id;
     }
 
-    public String getDrinks() {
-        return drinks;
+    public String getProductTitle() {
+        return productTitle;
     }
 
-    public Double getDrinksPrice() {
-        return drinksPrice;
+    public String getProductSlug() {
+        return productSlug;
     }
 
-    public String getDrinksDesc(){
-        return drinksDesc;
+    public Date getProductPublishDate(){
+        return productPublishDate;
+    }
+
+    public String getProductStatus(){
+        return productStatus;
+    }
+
+    public String getProductTags(){
+        return productTags;
+    }
+
+    public int getProductPlace(){
+        return productPlace;
+    }
+
+    public String getProductDesc(){
+        return productDesc;
+    }
+
+    public String getProductFile(){
+        return productFile;
     }
 
 
-
-    // public String getSpecialItems(){
-    //     return specialItems;
-    // }
-    
-    // public String getSpecialItemsDesc(){
-    //     return specialItemsDesc;
-    // }
-
-    //Setter
-    public void getIdDrinks(String id) {
-        this.id = id;
-    }
-
-    public void setDrinks(String drinks) {
-        this.drinks = drinks;
+    public void setProductTitle(String productTitle){ 
+        this.productTitle = productTitle;
     }
 
 
-    public void setDrinksPrice(Double drinksPrice) {
-        this.drinksPrice = drinksPrice;
+    public void setProductSlug(String productSlug){ 
+        this.productSlug = productSlug;
     }
 
-    public void setDrinksDesc(String drinksDesc){
-        this.drinksDesc = drinksDesc;
+    public void setProductPublishDate(Date productPublishDate){
+        this.productPublishDate = productPublishDate;
     }
 
-    // public void setSpecialItems(String specialItems) {
-    //     this.specialItems = specialItems;
-    // }
+    public void setProductStatus(String productStatus){ 
+        this.productStatus = productStatus;
+    }
 
-    // public void setSpecialItemsDesc(String specialItemsDesc) {
-    //     this.specialItemsDesc = specialItemsDesc;
- //   }
+    public void setProductTags(String productTags){ 
+        this.productTags = productTags;
+    }
+
+    public void setProductPlace(int productPlace){ 
+        this.productPlace = productPlace;
+    }
+
+        public void setProductDesc(String productDesc){ 
+        this.productDesc = productDesc;
+    }
+
+    public void setProductFile(String productFile){ 
+        this.productFile = productFile;
+    }
 
 
 }
