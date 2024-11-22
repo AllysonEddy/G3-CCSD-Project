@@ -1,6 +1,6 @@
 package com.example.ccsd.WebsiteImages;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,14 +9,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WebsiteImages {
     @Id
     private String id;
-    private List<String> foodImages;
-    private List<String> drinkImages;
-    private List<String> specialImages;
+    private String itemImages;
+    private Date uploadDate;
+    private String tags;
 
-    public WebsiteImages (String foodImage, String drinkImage, String specialImage) {
-        this.foodImages = new ArrayList<>();
-        this.drinkImages = new ArrayList<>();
-        this.specialImages = new ArrayList<>();
+    public WebsiteImages (){} //
+    public WebsiteImages (String itemImage, Date uploadDate, String tags) {
+        this.itemImages = itemImage;
+        this.uploadDate = uploadDate;
+        this.tags = tags;
     }
     public String getId (){
         return this.id;
@@ -25,24 +26,22 @@ public class WebsiteImages {
         this.id = id;
     }
 
-    public List<String> getFoodImages() {
-        return this.foodImages;
+    public String getItemImages() {
+        return this.itemImages;
     }
-    public void setFoodImages(List<String> foodImages) {
-        this.foodImages = foodImages;
+    public void setItemImages(String itemImages) {
+        this.itemImages = itemImages;
     }
-
-    public List<String> getDrinkImages() {
-        return this.drinkImages;
+    public Date uploadDate() {
+        return this.uploadDate;
     }
-    public void setDrinkImages(List<String> drinkImages) {
-        this.drinkImages = drinkImages;
+    public void setuploadDate(Date uploadDate) {
+        this.uploadDate = uploadDate;
     }
-
-    public List<String> getSpecialImages() {
-        return this.specialImages;
+    public String gettags() {
+        return this.tags;
     }
-    public void setSpecialImages(List<String> specialImages) {
-        this.specialImages = specialImages;
+    public void settags(String tags) {
+        this.tags = tags;
     }
 }
