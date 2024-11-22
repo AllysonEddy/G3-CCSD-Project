@@ -11,7 +11,7 @@ const AddWebsiteText = () => {
     const navigate = useNavigate();
 
     const handleAddBlog = async (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault(); 
       
         try {
           const success = await SaveItemsAdmin.addWebsiteTextAdmin(title, description, status);
