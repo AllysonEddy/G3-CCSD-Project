@@ -9,7 +9,7 @@ public class WebsiteTexts {
   private String id;
   private String title;
   private String description;
-  private int status; // Assuming status is stored as an integer (e.g., 0 for draft, 1 for publish)
+  private int status; 
 
   // Constructors
   public WebsiteTexts() {}
