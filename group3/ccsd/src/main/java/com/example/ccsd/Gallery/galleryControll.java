@@ -23,8 +23,8 @@ public class galleryControll {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<gallery> getGalleryById(@PathVariable String galleryId) {
-        return galleryService.getGalleryBygalleryId(galleryId)
+    public ResponseEntity<gallery> getGalleryById(@PathVariable String id) {
+        return galleryService.getGalleryById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
@@ -36,8 +36,8 @@ public class galleryControll {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteGallery(@PathVariable String galleryId) {
-        galleryService.deleteGallery(galleryId);
+    public ResponseEntity<Void> deleteGallery(@PathVariable String id) {
+        galleryService.deleteGallery(id);
         return ResponseEntity.noContent().build();
     }
 }
