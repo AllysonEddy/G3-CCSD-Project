@@ -40,19 +40,19 @@ const AddWebsiteGallery = () => {
                     onChange={(e) => setTitle(e.target.value)}
                     label="Enter Image Title"
                     id="title"
-                    sx={{ m: 1, width: '30.5%' }}
+                    sx={{ m: 1, width: '70%' }}
                     variant="filled"
                 />
                 <TextField
                     onChange={(e) => setDescription(e.target.value)}
                     label="Enter Description"
                     id="description"
-                    sx={{ m: 1, width: '30.5%' }}
+                    sx={{ m: 1, width: '70%' }}
                     variant="filled"
                     multiline
                     rows={4}
                 />
-                <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
+                <FormControl sx={{ m: 1, width: '70%' }} variant="filled">
                     <FilledInput
                         onChange={(e) => setDate(e.target.value)}
                         id='date'
@@ -60,7 +60,7 @@ const AddWebsiteGallery = () => {
                     />
                     <FormHelperText id="filled-dob-helper-text">Publish Date</FormHelperText>
                 </FormControl>
-                <FormControl sx={{ m: 1, width: '30.5%' }} variant="filled">
+                <FormControl sx={{ m: 1, width: '70%' }} variant="filled">
                     <FilledInput
                         accept="image/*"
                         id="image-upload"
