@@ -28,6 +28,9 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<spring.servlet.multipart.max-file-size>10MB</spring.servlet.multipart.max-file-size>
+		<spring.servlet.multipart.max-request-size>10MB</spring.servlet.multipart.max-request-size>
+		<spring.servlet.multipart.enabled>true</spring.servlet.multipart.enabled>
 	</properties>
 	<dependencies>
 
@@ -50,6 +53,22 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-sync</artifactId>
 		</dependency>
 	</dependencies>
 
