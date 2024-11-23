@@ -1,21 +1,22 @@
 {
   "Header": {
-    "title": "We are a Landing Page",
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sed commodo nibh ante facilisis bibendum."
+    "title": "We speak the Good Food Language",
+    "paragraph": "Fresh coffee, delicious pastries, and cozy vibes - your perfect cafe experience!"
   },
   "About": {
-    "paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "paragraph": "At SAJAA Cafe, we’re passionate about creating moments of joy with every cup of coffee and every pastry we serve. Founded on a love for quality and community, we carefully craft our menu to bring you the best flavors and freshest ingredients. Whether you’re stopping by for your morning coffee, catching up with friends, or enjoying a quiet moment, we’re here to make your experience warm and welcoming. Join us and savor the simple pleasures of life, one bite and sip at a time.",
     "Why": [
-      "Lorem ipsum dolor",
-      "Tempor incididunt",
-      "Lorem ipsum dolor",
-      "Incididunt ut labore"
+      "Freshly Brewed Excellence",
+      "Handcrafted Pastries",
+      "Cozy Atmosphere",
+      "Convenient Location"
+      
     ],
     "Why2": [
-      "Aliquip ex ea commodo",
-      "Lorem ipsum dolor",
-      "Exercitation ullamco",
-      "Lorem ipsum dolor"
+      "Affordable Luxury",
+      "Sustainable Practices",
+      "Customizable Options",
+      "Friendly Services"
     ]
   },
   "Gallery": [
@@ -106,33 +107,33 @@
   "Testimonials": [
     {
       "img": "img/testimonials/01.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"The best coffee in town! Perfectly brewed every time.\"",
+      "name": "Liam Prescott"
     },
     {
       "img": "img/testimonials/02.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"Their pastries are a dream—fresh, flaky, and delicious!\"",
+      "name": "Darren Collin"
     },
     {
       "img": "img/testimonials/03.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"Such a cozy spot! I love coming here to relax and unwind.\"",
+      "name": "Elliot Grant"
     },
     {
       "img": "img/testimonials/04.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"Amazing service! The staff is so friendly and attentive.\"",
+      "name": "Isla Bennet"
     },
     {
       "img": "img/testimonials/05.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "John Doe"
+      "text": "\"A hidden gem for coffee lovers and pastry enthusiasts.\"",
+      "name": "Jaxon Reed"
     },
     {
       "img": "img/testimonials/06.jpg",
-      "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
-      "name": "Johnathan Doe"
+      "text": "\"Great vibes, great flavors—my go-to café!\"",
+      "name": "Ava Montgomery"
     }
   ],
   "Team": [
@@ -158,9 +159,9 @@
     }
   ],
   "Contact": {
-    "address": "4321 California St, San Francisco, CA 12345 ",
-    "phone": "+1 123 456 1234",
-    "email": "info@company.com",
+    "address": "Jalan Permata 6, Tasik Biru Kundang, 47000 Sungai Buloh, Selangor ",
+    "phone": "+60 1234567865",
+    "email": "sajaa@company.com",
     "facebook": "fb.com",
     "twitter": "twitter.com",
     "youtube": "youtube.com"

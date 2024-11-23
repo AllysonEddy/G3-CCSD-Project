@@ -42,10 +42,9 @@ export const Contact = (props) => {
           <div className="col-md-8">
             <div className="row">
               <div className="section-title">
-                <h2>Get In Touch</h2>
+                <h2>Reach out</h2>
                 <p>
-                  Please fill out the form below to send us an email and we will
-                  get back to you as soon as possible.
+                Good vibes and great brews are just a message away!
                 </p>
               </div>
               <form name="sentMessage" validate onSubmit={handleSubmit}>
