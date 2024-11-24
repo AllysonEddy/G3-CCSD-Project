@@ -3,7 +3,6 @@ package com.example.ccsd.Users;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,10 +34,9 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> addUser(@ModelAttribute users user) {
-        users savedUser = userService.addUsers(user);
-        return ResponseEntity.ok().body(savedUser);
+    @PostMapping
+    public users addUsers(@RequestBody users users){
+        return userService.addUsers(users);
     }
     
     @DeleteMapping("/{id}")

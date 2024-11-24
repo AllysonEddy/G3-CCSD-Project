@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class WebsiteImages {
     @Id
     private String id;
+    private String image;
     private String imageTitle;
     private String tags;
     private String postSlug;
@@ -24,8 +25,9 @@ public class WebsiteImages {
     }
 
     // Parameterized constructor
-    public WebsiteImages(String id, String imageTitle, String tags, String postSlug, Integer imageStatus, Date uploadDate, Boolean openAiImage, Integer imagePlace) {
+    public WebsiteImages(String id,String image, String imageTitle, String tags, String postSlug, Integer imageStatus, Date uploadDate, Boolean openAiImage, Integer imagePlace) {
         this.id = id;
+        this.image = image;
         this.imageTitle = imageTitle;
         this.tags = tags;
         this.postSlug = postSlug;
@@ -42,6 +44,13 @@ public class WebsiteImages {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImage() {
+        return this.image;
+    }
+    public void setImage (String image){
+        this.image = image;
     }
 
     public String getImageTitle() {

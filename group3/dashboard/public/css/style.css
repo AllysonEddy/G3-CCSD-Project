@@ -36,7 +36,7 @@ h5 {
   line-height: 20px;
 }
 p {
-  font-size: 15px;
+  font-size: 13px;
 }
 p.intro {
   margin: 12px 0 0;
@@ -72,7 +72,7 @@ hr {
 }
 /* Navigation */
 #menu {
-  padding: 15px;
+  padding: 5px;
   transition: all 0.8s;
 }
 #menu.navbar-default {
@@ -82,7 +82,7 @@ hr {
 }
 #menu a.navbar-brand {
   font-family: "Raleway", sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: #333;
   text-transform: uppercase;
@@ -91,7 +91,7 @@ hr {
   font-family: "Lato", sans-serif;
   text-transform: uppercase;
   color: #555;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 400;
   padding: 8px 2px;
   border-radius: 0;
@@ -160,7 +160,7 @@ hr {
   left: 50%;
 }
 .section-title p {
-  font-size: 18px;
+  font-size: 14px;
 }
 .btn-custom {
   font-family: "Raleway", sans-serif;
@@ -168,7 +168,7 @@ hr {
   color: #fff;
   background-color: #5ca9fb;
   background-image: linear-gradient(to right, #5ca9fb 0%, #6372ff 100%);
-  padding: 14px 34px;
+  padding: 12px 24px;
   letter-spacing: 1px;
   margin: 0;
   font-size: 15px;
@@ -176,6 +176,7 @@ hr {
   border-radius: 25px;
   transition: all 0.5s linear;
   border: 0;
+  width: 50%;
 }
 .btn-custom:hover,
 .btn-custom:focus,
@@ -219,9 +220,9 @@ a:focus,
   background: rgba(0, 0, 0, 0.2);
 }
 .intro h1 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #fff;
-  font-size: 50px;
+  font-size: 40px;
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 0;
@@ -233,7 +234,7 @@ a:focus,
 }
 .intro p {
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 30px;
   margin: 0 auto;
@@ -246,12 +247,12 @@ header .intro-text {
 }
 /* Features Section */
 #features {
-  background: #f6f6f6;
+  background: #faf5ef;
   padding-bottom: 30px;
 }
 
 .section-title h2{
-  padding-top: 20px;
+  padding-top: 0px;
 }
 
 #features i.fa {
@@ -269,7 +270,7 @@ header .intro-text {
 }
 /* About Section */
 #about {
-  padding: 100px 0;
+  padding: 60px 0;
 }
 #about h3 {
   font-size: 22px;
@@ -316,15 +317,29 @@ header .intro-text {
 }
 /* Services Section */
 #services {
-  padding: 100px 0;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  padding: 60px 0;
+  background: linear-gradient(to right, #faf5ef 0%, #c8b6a6 100%);
   color: #fff;
+}
+#services .service-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+#services .service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
 }
 #services .service-desc {
   margin: 10px 10px 20px;
 }
 #services h2 {
-  color: #fff;
+  color: #333;
+  font-size: 36px;
+  font-weight: bold;
 }
 #services .section-title h2::after {
   position: absolute;
@@ -336,27 +351,67 @@ header .intro-text {
   margin-left: -30px;
   left: 50%;
 }
-#services i.fa {
+#services i.service-icon {
   font-size: 42px;
-  width: 120px;
-  height: 120px;
-  padding: 40px 0;
+  width: 80px;
+  height: 80px;
+  padding: 20px;
   background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
   border-radius: 50%;
   color: #fff;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+#services i.service-icon:hover {
+  transform: scale(1.1);
 }
 #services h3 {
   font-weight: 500;
   padding: 5px 0;
-  color: #fff;
+  color: #131312;
+  font-size: 20px;
+}
+#services h4 {
+  font-weight: bold;
+  color: #e67e22;
+  margin-bottom: 10px;
 }
 #services p {
-  color: rgba(255, 255, 255, 0.75);
+  color: #131312;
+  font-size: 12px;
+  line-height: 1.6;
 }
 #services .service-desc {
   margin-bottom: 40px;
 }
+#services .btn-custom {
+  background-color: #6372ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 10px;
+}
+#services .btn-custom:hover {
+  background-color: #5ca9fb;
+  transform: scale(1.05);
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  #services h2 {
+    font-size: 28px;
+  }
+  #services .service-card {
+    margin: 10px 0;
+  }
+  #services i.service-icon {
+    font-size: 36px;
+  }
+}
+
 /* Portfolio Section */
 #portfolio {
   padding: 100px 0;
@@ -408,8 +463,8 @@ header .intro-text {
 }
 /* Testimonials Section */
 #testimonials {
-  padding: 100px 0;
-  background: #f6f6f6;
+  padding: 50px 0;
+  background: #faf5ef;
 }
 #testimonials i {
   color: #e6e6e6;
@@ -437,7 +492,7 @@ header .intro-text {
 }
 .testimonial-content p {
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-style: italic;
 }
 .testimonial-meta {
@@ -448,7 +503,7 @@ header .intro-text {
 }
 /* Team Section */
 #team {
-  padding: 100px 0;
+  padding: 50px 0;
 }
 #team h4 {
   margin: 5px 0;
@@ -466,15 +521,15 @@ header .intro-text {
 }
 /* Contact Section */
 #contact {
-  padding: 100px 0 60px;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
-  color: rgba(255, 255, 255, 0.75);
+  padding: 50px 0 20px;
+  background: linear-gradient(to right, #a4907c 0%, #c8b6a6 100%);
+  color: #ffffff;
 }
 #contact .section-title {
   margin-bottom: 40px;
 }
 #contact .section-title p {
-  font-size: 16px;
+  font-size: 20px;
 }
 #contact h2 {
   color: #fff;
@@ -568,8 +623,8 @@ label {
 }
 #contact .social {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
-  padding-top: 50px;
-  margin-top: 50px;
+  padding-top: 20px;
+  margin-top: 0px;
   text-align: center;
 }
 #contact .social ul li {
@@ -577,10 +632,10 @@ label {
   margin: 0 20px;
 }
 #contact .social i.fa {
-  font-size: 22px;
-  width: 48px;
-  height: 48px;
-  padding: 12px 0;
+  font-size: 15px;
+  width: 28px;
+  height: 28px;
+  padding: 5px 0;
   border: 2px solid #fff;
   color: #fff;
   border-radius: 50%;
@@ -592,12 +647,12 @@ label {
 }
 /* Footer Section*/
 #footer {
-  background: #f6f6f6;
-  padding: 30px 0;
+  background: #131312;
+  padding-top: 10px;
 }
 #footer p {
-  color: #888;
-  font-size: 14px;
+  color: #fff;
+  font-size: 12px;
 }
 #footer a {
   color: #608dfd;
