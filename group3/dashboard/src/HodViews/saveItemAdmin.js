@@ -136,7 +136,7 @@ const SaveItemsAdmin = {
     const formData = new FormData();
     
     formData.append('imageTitle', title);
-    formData.append('image', image);
+ 
     formData.append('tag', tag);
     formData.append('place', place);
     formData.append('status', status);
