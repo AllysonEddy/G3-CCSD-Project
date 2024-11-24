@@ -15,18 +15,21 @@ export const Services = (props) => {
           {props.data
             ? props.data.map((d, i) => (
                 <div key={`${d.name}-${i}`} className="col-md-4">
-                  {" "}
-                  <i className={d.icon}></i>
-                  <div className="service-desc">
-                    <h3>{d.name}</h3>
-                    <h4>{d.price}</h4>
-                    <p>{d.text}</p>
-                    <a href={`payment/${d.slug}`}>
-                      <button
-                        className="btn btn-custom"
-                      >Buy Now
-                      </button>
-                    </a>
+                  <div className="service-card">
+                    <i className={`service-icon ${d.icon}`}></i>
+                    <div className="service-desc">
+                      <h3>{d.name}</h3>
+                      <h4>{d.price}</h4>
+                      <p>{d.text}</p>
+                      <a href={`payment/${d.slug}`}>
+                        <button
+                          className="btn btn-custom"
+                          aria-label={`Buy ${d.name}`}
+                        >
+                          Buy Now
+                        </button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               ))
