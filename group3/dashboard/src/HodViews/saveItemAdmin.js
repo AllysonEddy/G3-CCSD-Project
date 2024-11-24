@@ -132,49 +132,33 @@ const SaveItemsAdmin = {
       throw error;
     }
   },
-  async addWebsiteImageAdmin( place, postShortDescription, tag, title, postSlug, content, status, date, image) {
-    const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+  async addWebsiteImageAdmin(place, tag, title, status, date, image) {
+    const formData = new FormData();
+    const imageURL = image ? URL.createObjectURL(image):null;
+    formData.append('image', imageURL);
+    formData.append('title', title);
+    formData.append('tag', tag);
+    formData.append('place', place);
+    formData.append('status', status);
+    formData.append('date', date);
+  
 
     try {
-      const formData = new FormData();
-      formData.append('author', username);
-      formData.append('postShortDescription', postShortDescription);
-      formData.append('tag', tag);
-      formData.append('place', place);
-      formData.append('title', title);
-      formData.append('postSlug', postSlug);
-      formData.append('content', content);
-      formData.append('status', status);
-      formData.append('date', date);
+        const response = await axios.post(
+            `${API_BASE_URL}/api/websiteimages`,
+            formData,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ${token}',
+                },
+            }
+        );
 
-      if (image) {
-        formData.append('image', image); // Assuming 'image' is the key on the server to handle file uploads
-      }
-
-      const response = await axios.post(
-        `${API_BASE_URL}/add_blog/`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.status === 200) {
         return response.data;
-      }
     } catch (error) {
-      if (error.response) {
-        console.error('Server responded with an error:', error.response.data);
-      } else if (error.request) {
-        console.error('No response received:', error.request);
-      } else {
-        console.error('Error setting up the request:', error.message);
-      }
-      throw error;
+        console.error('Error uploading image:', error);
+        throw error;
     }
   },
   async addWebsiteTextAdmin(description, title, status) {
@@ -195,9 +179,9 @@ const SaveItemsAdmin = {
         formData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data', // Set content type to multipart/form-data for file uploads
+            'Content-Type': 'application/json', // Set content type to multipart/form-data for file uploads
             Authorization: `Bearer ${token}`,
-          },
+          },  
         }
       );
 
