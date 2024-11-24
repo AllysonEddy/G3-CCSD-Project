@@ -248,7 +248,8 @@ header .intro-text {
 /* Features Section */
 #features {
   background: #faf5ef;
-  padding-bottom: 30px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 
 .section-title h2{
@@ -256,16 +257,16 @@ header .intro-text {
 }
 
 #features i.fa {
-  font-size: 38px;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  font-size: 18px;
+  margin-top: 0px;
+  margin-bottom: 10px;
   transition: all 0.5s;
   color: #fff;
-  width: 100px;
-  height: 100px;
-  padding: 30px 0;
+  width: 40px;
+  height: 40px;
+  padding: 10px 0;
   border-radius: 50%;
-  background: linear-gradient(to right, #6372ff 0%, #5ca9fb 100%);
+  background: linear-gradient(to right, #8d7b68 0%, #d4af37 100%);
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
 }
 /* About Section */
@@ -317,7 +318,8 @@ header .intro-text {
 }
 /* Services Section */
 #services {
-  padding: 60px 0;
+  padding-bottom: 50px;
+  padding-top: 50px;
   background: linear-gradient(to right, #faf5ef 0%, #c8b6a6 100%);
   color: #fff;
 }
@@ -414,7 +416,8 @@ header .intro-text {
 
 /* Portfolio Section */
 #portfolio {
-  padding: 100px 0;
+  padding-bottom: 80px;
+  padding-top: 50px;
 }
 .portfolio-item {
   margin: 1px -15px 0 -14px;
@@ -463,7 +466,8 @@ header .intro-text {
 }
 /* Testimonials Section */
 #testimonials {
-  padding: 50px 0;
+  padding-bottom: 50px;
+  padding-top: 50px;
   background: #faf5ef;
 }
 #testimonials i {
@@ -503,7 +507,8 @@ header .intro-text {
 }
 /* Team Section */
 #team {
-  padding: 50px 0;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 #team h4 {
   margin: 5px 0;
@@ -521,7 +526,7 @@ header .intro-text {
 }
 /* Contact Section */
 #contact {
-  padding: 50px 0 20px;
+  padding: 50px 0 50px;
   background: linear-gradient(to right, #a4907c 0%, #c8b6a6 100%);
   color: #ffffff;
 }
