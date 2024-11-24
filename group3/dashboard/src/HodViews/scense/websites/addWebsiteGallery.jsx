@@ -20,7 +20,7 @@ const AddWebsiteGallery = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-            const success = await SaveItemsAdmin.addGalleryAdmin(title, image, description, date);
+            const success = await SaveItemsAdmin.addGalleryAdmin(title, description, date,image);
             if (success) {
                 navigate("/website-components-admin");
             } else {

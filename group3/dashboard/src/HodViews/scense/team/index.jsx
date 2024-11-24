@@ -36,6 +36,7 @@ const TeamAdmin = () => {
                         phone: user.phoneNumber || 'No Phone',
                         email: user.userEmail || 'No Email',
                         access: "Teacher",
+                        userImage: user.userImage || null,
                     };
                 });
                 console.log('Processed team data:', teamData);
@@ -60,29 +61,29 @@ const TeamAdmin = () => {
         { field: "email", headerName: "EMAIL", flex: 1 },
         {
             field: "access",
-            headerName: "ACCESS",
+            headerName: "USER IMAGE",
             flex: 1,
-            renderCell: ({ row: { access } }) => {
+            renderCell: ({ row: { userImage } }) => {
                 return (
                     <Box
                         width="60%"
                         m="0 auto"
                         p="5px"
+                        display="flex"
                         justifyContent="center"
-                        alignItems="center" // Added for vertical alignment
-                        backgroundColor={
-                            access === "admin"
-                                ? colors.greenAccent[600]
-                                : colors.greenAccent[700]
-                        }
-                        borderRadius="4px"
+                        alignItems="center"
                     >
-                        {access === "Teacher" && <AdminPanelSettingsOutlinedIcon />}
-                        {access === "manager" && <SecurityOutlinedIcon />}
-                        {access === "user" && <LockOpenOutlinedIcon />}
-                        <Typography variant="body1" color={colors.grey[100]} sx={{ ml: "5px" }}>
-                            {access}
-                        </Typography>
+                        {userImage ? (
+                            <img
+                                src={userImage}
+                                alt="User"
+                                style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+                            />
+                        ) : (
+                            <Typography variant="body1" color="textSecondary">
+                                No Image
+                            </Typography>
+                        )}
                     </Box>
                 );
             },
