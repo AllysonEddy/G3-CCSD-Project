@@ -17,13 +17,14 @@ public class Product {
     private int productPlace;
     private String productDesc;
     private String productFile;
+    private Long productLongDesc;
 
 
     public Product(){
         
     }
 
-    public Product(String productTitle, String productSlug, Date productPublishDate, String productStatus, String productTags, int productPlace, String productDesc, String productFile) {
+    public Product(String productTitle, String productSlug, Date productPublishDate, String productStatus, String productTags, int productPlace, String productDesc, String productFile, Long productLongDesc) {
         this.productTitle = productTitle;
         this.productSlug = productSlug;
         this.productPublishDate = productPublishDate;
@@ -32,6 +33,7 @@ public class Product {
         this.productPlace = productPlace;
         this.productDesc = productDesc;
         this.productFile = productFile;
+        this.productLongDesc = productLongDesc;
 
     }
 
@@ -72,6 +74,10 @@ public class Product {
         return productFile;
     }
 
+    public Long getProductLongDesc(){
+        return productLongDesc;
+    }
+
 
     public void setProductTitle(String productTitle){ 
         this.productTitle = productTitle;
@@ -104,6 +110,10 @@ public class Product {
 
     public void setProductFile(String productFile){ 
         this.productFile = productFile;
+    }
+
+    public void setProductLongDesc(Long productLongDesc){ 
+        this.productLongDesc = productLongDesc;
     }
 
 

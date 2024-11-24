@@ -33,7 +33,7 @@ public class ProductController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("addProduct")
     public Product addProducts(@RequestBody Product products) {
         return productService.addProduct(products);
     }
