@@ -1,4 +1,5 @@
 package com.example.ccsd.Gallery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,29 +8,26 @@ import java.util.Optional;
 
 @Service
 public class galleryService {
-    
-    @Autowired
-    private galleryRepo galleryRepo;
 
-    // Getting all gallery
+    @Autowired
+    private galleryRepo galleryRepo; // Repository to interact with MongoDB
+
+    // Fetch all gallery items
     public List<gallery> getAllGallery() {
         return galleryRepo.findAll();
     }
 
-    // Getting single gallery
+    // Fetch a specific gallery item by its ID
     public Optional<gallery> getGalleryById(String id) {
         return galleryRepo.findById(id);
     }
 
-    // Creating new data in repository
-
-    public gallery addGallery(gallery gallery) {
-        return galleryRepo.save(gallery);
+    // Add a new gallery item
+    public gallery addGallery(gallery newGallery) {
+        return galleryRepo.save(newGallery);
     }
 
-
-    // Deleting
-    
+    // Delete a gallery item by its ID
     public void deleteGallery(String id) {
         galleryRepo.deleteById(id);
     }

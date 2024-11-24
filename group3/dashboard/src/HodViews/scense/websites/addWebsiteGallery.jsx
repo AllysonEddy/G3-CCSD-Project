@@ -4,6 +4,7 @@ import Header from "../../../components/Header";
 import SaveItemsAdmin from '../../saveItemAdmin';
 import { useNavigate } from 'react-router-dom';
 
+
 const AddWebsiteGallery = () => {
     const [title, setTitle] = useState('');
     const [image, setImage] = useState(null);
@@ -18,7 +19,9 @@ const AddWebsiteGallery = () => {
 
     const handleAddGallery = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
-      
+        const formData = new FormData();
+        formData.append("image",image);
+
         try {
             const success = await SaveItemsAdmin.addGalleryAdmin(title, description, date,image);
             if (success) {
