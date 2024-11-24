@@ -2,18 +2,12 @@ package com.example.ccsd.WebsiteImages;
 
 
 import java.io.IOException;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
-
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
@@ -22,8 +16,6 @@ public class WebImageService {
     @Autowired
     private WebImageRepository webImageRepository;
 
-    @Autowired
-    private GridFsTemplate gridFsTemplate;
 
     // Get all images
     public List<WebsiteImages> getAllImages() {
@@ -36,12 +28,7 @@ public class WebImageService {
 
     // Create a new image
 
-    public WebsiteImages addNewImage(WebsiteImages newImage, MultipartFile file) throws IOException {
-        String fileId = storeFile(file);
-        newImage.setFileId(fileId);
-        newImage.setFileName(file.getOriginalFilename());
-        newImage.setContentType(file.getContentType());
-
+    public WebsiteImages addNewImage(WebsiteImages newImage) throws IOException {
         return webImageRepository.save(newImage);
     }
 
@@ -51,10 +38,7 @@ public class WebImageService {
         if (imageOpt.isPresent()) {
             WebsiteImages existingImage = imageOpt.get();
 
-            // Update fields
-
-            existingImage.setImagePath(imageDetails.getImagePath());
-
+            // Update fi
             existingImage.setTags(imageDetails.getTags());
             existingImage.setPostSlug(imageDetails.getPostSlug());
             existingImage.setImageStatus(imageDetails.getImageStatus());
@@ -70,20 +54,14 @@ public class WebImageService {
 
     // Delete an image
     public void deleteImage(String id) {
-
-        WebsiteImages image = webImageRepository.findById(id)
-            .orElseThrow(() -> new NoSuchElementException("Image not found"));
-        gridFsTemplate.delete(Query.query(Criteria.where("_id").is(image.getFileId())));
-
-        webImageRepository.deleteById(id);
+        Optional<WebsiteImages> image = webImageRepository.findById(id);
+        if (image.isPresent()) {
+            webImageRepository.deleteById(id);
+        } else {
+            throw new NoSuchElementException("Image with ID " + id + " not found.");
+        }
     }
 
-    // Add new method to store file
-    public String storeFile(MultipartFile file) throws IOException {
-        return gridFsTemplate.store(
-            file.getInputStream(),
-            file.getOriginalFilename(),
-            file.getContentType()
-        ).toString();
-    }
+
 }
+

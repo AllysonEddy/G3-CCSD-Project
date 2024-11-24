@@ -136,13 +136,11 @@ const SaveItemsAdmin = {
     const formData = new FormData();
     
     formData.append('imageTitle', title);
-
+ 
     formData.append('tag', tag);
     formData.append('place', place);
     formData.append('status', status);
     formData.append('date', date);
-
-  
 
     try {
         const response = await axios.post(

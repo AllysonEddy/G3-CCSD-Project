@@ -23,6 +23,7 @@ const AddWebsiteImage = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [imageTitle, setImageTitle] = useState(null);
+    const [image, setImage] = useState(null);
     const [tag, setTag] = useState(null);
     const [status, setStatus] = useState(null);
     const [date, setDate] = useState(null);
@@ -37,9 +38,6 @@ const AddWebsiteImage = () => {
         setOpenAiImage(false);
     }
     
-
-    
-
     const editor = useRef(null)
     const [content, setContent] = useState(null);
 
@@ -55,15 +53,15 @@ const AddWebsiteImage = () => {
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
-        setImageTitle(selectedImage);
+        setImage(selectedImage);
     };
 
-    const handleAddBlog = async (event) => {
+    const handleAddImage = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteImageAdmin(imageTitle,place, tag, status, date);
-          
+          const success = await SaveItemsAdmin.addWebsiteImageAdmin(imageTitle,place, tag, status, date, image );
+            
           if (success) {
             navigate("/website-components-admin");
           } else {
@@ -83,21 +81,9 @@ const AddWebsiteImage = () => {
   return (
 
     <Box>
-        <Dialog open={openAiImage} fullWidth maxWidth="lg">
-            <DialogTitle> AI Image Generator or Edit </DialogTitle>
-            <DialogContent>
-                <Stack spacing={2} margin={2}>
-
-                </Stack>
-            </DialogContent>
-            <DialogActions>
-                <Button color='success' variant='contained'>Use Image</Button>
-                <Button color='error' variant='contained' onClick={functionCloseAiImage}>Close</Button>
-            </DialogActions>
-        </Dialog>
         <Header title="Add Image" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddImage} >
                 <TextField
                 onChange={(e) => setImageTitle(e.target.value)}
                 label="Enter Image Title"

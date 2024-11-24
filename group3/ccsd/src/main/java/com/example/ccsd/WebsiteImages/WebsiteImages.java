@@ -5,50 +5,36 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
-@Document(collection = "webimages")
+@Document(collection = "websiteimages")
 public class WebsiteImages {
     @Id
     private String id;
-    private String fileId;
-    private String fileName;
-    private String contentType;
-
+    private String image;
+    private String imageTitle;
     private String tags;
     private String postSlug;
     private Integer imageStatus;
     private Date uploadDate;
     private Boolean openAiImage;
+    private Integer imagePlace;
 
-    private String imagePlace;
-    private String imageDesc;
-    private String imagePath;
-
-
+    // Default constructor
     public WebsiteImages() {
         this.openAiImage = false; // Set default value
         this.uploadDate = new Date(); // Set default value
     }
 
     // Parameterized constructor
-
-    public WebsiteImages(String id, String fileId, String fileName, String contentType, String tags, String postSlug, 
-                        String imageStatus, Date uploadDate, Boolean openAiImage, 
-                        String imagePlace, String imageDesc) {
+    public WebsiteImages(String id,String image, String imageTitle, String tags, String postSlug, Integer imageStatus, Date uploadDate, Boolean openAiImage, Integer imagePlace) {
         this.id = id;
-        this.fileId = fileId;
-        this.fileName = fileName;
-        this.contentType = contentType;
-
+        this.image = image;
+        this.imageTitle = imageTitle;
         this.tags = tags;
         this.postSlug = postSlug;
         this.uploadDate = uploadDate;
         this.imageStatus = imageStatus;
         this.openAiImage = openAiImage;
         this.imagePlace = imagePlace;
-
-        this.imageDesc = imageDesc;
-
     }
 
     // Getters and setters
@@ -60,32 +46,19 @@ public class WebsiteImages {
         this.id = id;
     }
 
-
-    public String getFileId() {
-        return this.fileId;
+    public String getImage() {
+        return this.image;
+    }
+    public void setImage (String image){
+        this.image = image;
     }
 
-    public void setFileId(String fileId) {
-        this.fileId = fileId;
+    public String getImageTitle() {
+        return this.imageTitle;
     }
-
-    public String getFileName() {
-        return this.fileName;
+    public void setImageTitle(String imageTitle) {
+        this.imageTitle = imageTitle;
     }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-
-    }
-
-    public String getContentType() {
-        return this.contentType;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
     public String getTags() {
         return this.tags;
     }
@@ -128,13 +101,6 @@ public class WebsiteImages {
 
     public Integer getImagePlace() {
         return this.imagePlace;
-    }
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
     }
 
     public void setImagePlace(Integer imagePlace) {
