@@ -14,11 +14,11 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow OPTIONS method
-                        .allowedHeaders("*")  // Allow all headers
-                        .exposedHeaders("Authorization") // In case you need to expose any headers
-                        .allowCredentials(false) // In case you're not using cookies or authentication
-                        .maxAge(3600); // Cache the preflight request for 1 hour
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                        .allowedHeaders("*")
+                        .exposedHeaders("Authorization")
+                        .allowCredentials(true)
+                        .maxAge(3600);
             }
         };
     }

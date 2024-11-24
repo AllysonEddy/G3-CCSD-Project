@@ -16,6 +16,7 @@ import AddWebsiteGallery from "./HodViews/scense/websites/addWebsiteGallery";
 import Landing from "./landingpage/landing";
 import "./App.css";
 import Payment from "./payment/payment";
+import ViewWebImages from "./HodViews/scense/websites/ViewWebImages";
 
 
 const HodViewsLayout = ({ children }) => {
@@ -138,6 +139,15 @@ function App() {
         element={
           <HodViewsLayout>
             <AddProduct />
+          </HodViewsLayout>
+        }
+      />
+
+      <Route
+        path="/view-web-images"
+        element={
+          <HodViewsLayout>
+            <ViewWebImages />
           </HodViewsLayout>
         }
       />
