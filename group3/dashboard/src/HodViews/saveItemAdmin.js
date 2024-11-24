@@ -131,21 +131,21 @@ const SaveItemsAdmin = {
     }
   },
   async addWebsiteImageAdmin(place, tag, title, status, date, image) {
+
     const imageUrl = image ? URL.createObjectURL(image) : null;
     const formData = new FormData();
     
     formData.append('imageTitle', title);
+    formData.append('image', image);
     formData.append('tag', tag);
     formData.append('place', place);
     formData.append('status', status);
     formData.append('date', date);
-    formData.append('image', imageUrl);
-    
-    const token = await localStorage.getItem('jwtToken');
 
     try {
         const response = await axios.post(
-            '${API_BASE_URL}/api/websiteimages',
+            `${API_BASE_URL}/api/websiteimages`,
+
             formData,
             {
                 headers: {
@@ -156,7 +156,9 @@ const SaveItemsAdmin = {
         );
 
         return response.data;
+
     }catch (error) {
+
         console.error('Error uploading image:', error);
         throw error;
     }
@@ -166,21 +168,30 @@ const SaveItemsAdmin = {
     const username = await localStorage.getItem('userName');
 
     try {
-      const payload = {
-        author: username,
-        title: title,
-        description: description,
-        status: status,
-      };
 
-      const response = await axios.post('${API_BASE_URL}/api/websitetext', payload, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ${token}',
-        },
-      });
+      const formData = new FormData();
+      formData.append('author', username);
+      formData.append('description', description);
+      formData.append('title', title);
+     
+      formData.append('status', status);
+    
+   
+      const response = await axios.post(
+        `${API_BASE_URL}/api/websitetext`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'application/json', // Set content type to multipart/form-data for file uploads
+            Authorization: `Bearer ${token}`,
+          },  
+        }
+      );
 
-      return response.status === 200 || response.status === 201;
+      if (response.status === 200) {
+        return response.data;
+      }
+
     } catch (error) {
       console.error('Error in addWebsiteTextAdmin:', error);
       throw error;

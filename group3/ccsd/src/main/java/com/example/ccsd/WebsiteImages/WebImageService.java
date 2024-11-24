@@ -1,5 +1,7 @@
 package com.example.ccsd.WebsiteImages;
 
+
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -7,11 +9,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class WebImageService {
 
     @Autowired
     private WebImageRepository webImageRepository;
+
 
     // Get all images
     public List<WebsiteImages> getAllImages() {
@@ -23,7 +27,8 @@ public class WebImageService {
     }
 
     // Create a new image
-    public WebsiteImages addNewImage(WebsiteImages newImage) {
+
+    public WebsiteImages addNewImage(WebsiteImages newImage) throws IOException {
         return webImageRepository.save(newImage);
     }
 
@@ -33,7 +38,7 @@ public class WebImageService {
         if (imageOpt.isPresent()) {
             WebsiteImages existingImage = imageOpt.get();
 
-            // Update fields
+            // Update fi
             existingImage.setTags(imageDetails.getTags());
             existingImage.setPostSlug(imageDetails.getPostSlug());
             existingImage.setImageStatus(imageDetails.getImageStatus());
@@ -49,6 +54,14 @@ public class WebImageService {
 
     // Delete an image
     public void deleteImage(String id) {
-        webImageRepository.deleteById(id);
+        Optional<WebsiteImages> image = webImageRepository.findById(id);
+        if (image.isPresent()) {
+            webImageRepository.deleteById(id);
+        } else {
+            throw new NoSuchElementException("Image with ID " + id + " not found.");
+        }
     }
+
+
 }
+
