@@ -1,5 +1,6 @@
 package com.example.ccsd.Products;
 
+import java.util.Base64;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -12,19 +13,22 @@ public class Product {
     private String productTitle;
     private String productSlug;
     private Date productPublishDate;
-    private String productStatus;
+    private int productStatus;
     private String productTags;
     private int productPlace;
     private String productDesc;
-    private String productFile;
-    private Long productLongDesc;
+    private byte[] productImage;
+    private String productImage64String;
+    private String productLongDesc;
 
 
     public Product(){
         
     }
 
-    public Product(String productTitle, String productSlug, Date productPublishDate, String productStatus, String productTags, int productPlace, String productDesc, String productFile, Long productLongDesc) {
+    public Product(String productTitle, String productSlug, Date productPublishDate, 
+                    int productStatus, String productTags, int productPlace, 
+                    String productDesc, byte[] productImage, String productLongDesc) {
         this.productTitle = productTitle;
         this.productSlug = productSlug;
         this.productPublishDate = productPublishDate;
@@ -32,10 +36,11 @@ public class Product {
         this.productTags = productTags;
         this.productPlace = productPlace;
         this.productDesc = productDesc;
-        this.productFile = productFile;
+        this.productImage = productImage;
         this.productLongDesc = productLongDesc;
 
     }
+
 
     //getter
     public String getId() {
@@ -54,7 +59,7 @@ public class Product {
         return productPublishDate;
     }
 
-    public String getProductStatus(){
+    public int getProductStatus(){
         return productStatus;
     }
 
@@ -70,13 +75,14 @@ public class Product {
         return productDesc;
     }
 
-    public String getProductFile(){
-        return productFile;
-    }
-
-    public Long getProductLongDesc(){
+    public String getProductLongDesc(){
         return productLongDesc;
     }
+
+    public byte[] getProductImage() {
+        return this.productImage;
+    }
+
 
 
     public void setProductTitle(String productTitle){ 
@@ -92,7 +98,7 @@ public class Product {
         this.productPublishDate = productPublishDate;
     }
 
-    public void setProductStatus(String productStatus){ 
+    public void setProductStatus(int productStatus){ 
         this.productStatus = productStatus;
     }
 
@@ -108,13 +114,25 @@ public class Product {
         this.productDesc = productDesc;
     }
 
-    public void setProductFile(String productFile){ 
-        this.productFile = productFile;
-    }
 
-    public void setProductLongDesc(Long productLongDesc){ 
+    public void setProductLongDesc(String productLongDesc){ 
         this.productLongDesc = productLongDesc;
     }
 
+    public void setProductImage(byte[] productImage) {
+        this.productImage = productImage;
+    }
+
+    public String getImageAsBase64() {
+        return productImage != null ? Base64.getEncoder().encodeToString(productImage) : null;
+    }
+
+    public void setProductImage64String(String productImage64String) {
+        this.productImage64String = productImage64String;  // Set Base64 string
+    }
+
+    public String getProductImage64String() {
+        return this.productImage64String;  // Return Base64 string
+    }
 
 }
