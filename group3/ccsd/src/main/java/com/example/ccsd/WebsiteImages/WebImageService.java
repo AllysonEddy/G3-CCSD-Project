@@ -1,6 +1,8 @@
 package com.example.ccsd.WebsiteImages;
 
+
 import java.io.IOException;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -10,7 +12,9 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
 import org.springframework.stereotype.Service;
+
 import org.springframework.web.multipart.MultipartFile;
+
 
 @Service
 public class WebImageService {
@@ -29,14 +33,15 @@ public class WebImageService {
     public Optional<WebsiteImages> getImageById(String id) {
         return webImageRepository.findById(id);
     }
-    
 
     // Create a new image
+
     public WebsiteImages addNewImage(WebsiteImages newImage, MultipartFile file) throws IOException {
         String fileId = storeFile(file);
         newImage.setFileId(fileId);
         newImage.setFileName(file.getOriginalFilename());
         newImage.setContentType(file.getContentType());
+
         return webImageRepository.save(newImage);
     }
 
@@ -47,14 +52,15 @@ public class WebImageService {
             WebsiteImages existingImage = imageOpt.get();
 
             // Update fields
+
             existingImage.setImagePath(imageDetails.getImagePath());
+
             existingImage.setTags(imageDetails.getTags());
             existingImage.setPostSlug(imageDetails.getPostSlug());
             existingImage.setImageStatus(imageDetails.getImageStatus());
             existingImage.setUploadDate(imageDetails.getUploadDate());
             existingImage.setOpenAiImage(imageDetails.getOpenAiImage());
             existingImage.setImagePlace(imageDetails.getImagePlace());
-            existingImage.setImageDesc(imageDetails.getImageDesc());
 
             return webImageRepository.save(existingImage);
         } else {
@@ -64,9 +70,11 @@ public class WebImageService {
 
     // Delete an image
     public void deleteImage(String id) {
+
         WebsiteImages image = webImageRepository.findById(id)
             .orElseThrow(() -> new NoSuchElementException("Image not found"));
         gridFsTemplate.delete(Query.query(Criteria.where("_id").is(image.getFileId())));
+
         webImageRepository.deleteById(id);
     }
 

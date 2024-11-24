@@ -1,10 +1,12 @@
 package com.example.ccsd.WebsiteImages;
 
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -21,15 +23,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mongodb.client.gridfs.model.GridFSFile;
 
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/api/webimages")
+@RequestMapping("/api/websiteimages")
 public class WebImageController {
 
     @Autowired
@@ -53,7 +57,10 @@ public class WebImageController {
     }
 
     // Add a new image
-    @PostMapping
+
+    public ResponseEntity<WebsiteImages> addImage(@RequestBody WebsiteImages newImage){
+        return ResponseEntity.ok(webImageService.addNewImage(newImage));
+
     public ResponseEntity<WebsiteImages> addImage(
         @RequestParam("image") MultipartFile image,
         @RequestParam("title") String title,
@@ -75,8 +82,9 @@ public class WebImageController {
         } catch (IOException | IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
-    }
 
+    }
+    
     // Update an existing image
     @PutMapping("/{id}")
     public ResponseEntity<WebsiteImages> updateImage(@PathVariable String id, @RequestBody WebsiteImages imageDetails) {
