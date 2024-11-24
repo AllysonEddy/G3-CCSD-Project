@@ -9,17 +9,36 @@ import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import Header from "../../../components/Header";
 import React, { useState, useEffect } from "react";
 import GetItemsAdmin from "../../getItemAdmin";
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import DeleteUser from '../../deleteUser';
 
 const TeamAdmin = () => {
     const [teamDeatails, setTeamDetails] = useState([]);
 
-
     useEffect(() => {
         GetItemsAdmin.getTeamDataAdmin()
             .then((result) => {
-                // Assuming result.data is the array you want
-                const teamData = result.data || [];
+                console.log('Raw data from server:', result);
+                if (!result || result.length === 0) {
+                    console.log('No data received from server');
+                    return;
+                }
+                const teamData = result.map(user => {
+                    console.log('Processing user:', user);
+                    if (!user.firstName || !user.lastName) {
+                        console.log('Missing name data for user:', user);
+                    }
+                    return {
+                        id: user.id || 'No ID',
+                        name: user.firstName && user.lastName 
+                            ? `${user.firstName} ${user.lastName}`
+                            : 'Name Not Available',
+                        phone: user.phoneNumber || 'No Phone',
+                        email: user.userEmail || 'No Email',
+                        access: "Teacher",
+                    };
+                });
+                console.log('Processed team data:', teamData);
                 setTeamDetails(teamData);
             })
             .catch((error) => {
@@ -69,36 +88,46 @@ const TeamAdmin = () => {
             },
         },
         {
-            field: "edit",
-            headerName: "EDIT",
+            field: "delete",
+            headerName: "DELETE",
             flex: 1,
             renderCell: ({ row }) => {
                 return (
-                    <Link to={`/editTeam/${row.id}`} style={{ textDecoration: "none" }}>
-                        <Box
-                            width="40%"
-                            m="0 auto"
-                            p="5px"
-                            justifyContent="center"
-                            alignItems="center" // Added for vertical alignment
-                            backgroundColor={
-                                row.access === "admin"
-                                    ? colors.greenAccent[600]
-                                    : colors.greenAccent[700]
+                    <Box
+                        width="40%"
+                        m="0 auto"
+                        p="5px"
+                        display="flex"
+                        justifyContent="center"
+                        alignItems="center"
+                        backgroundColor={colors.redAccent[600]}
+                        borderRadius="4px"
+                        sx={{ 
+                            cursor: 'pointer',
+                            '&:hover': { backgroundColor: colors.redAccent[700] }
+                        }}
+                        onClick={async () => {
+                            if (window.confirm('Are you sure you want to delete this user?')) {
+                                try {
+                                    await DeleteUser.deleteUserAdmin(row.id);
+                                    const updatedTeamDetails = teamDeatails.filter(user => user.id !== row.id);
+                                    setTeamDetails(updatedTeamDetails);
+                                    alert('User deleted successfully!');
+                                } catch (error) {
+                                    console.error('Failed to delete user:', error);
+                                    alert(error.message);
+                                }
                             }
-                            borderRadius="4px"
-                        >
-                            <EditOutlinedIcon />
-        
-                            <Typography variant="body1" color={colors.grey[100]} sx={{ ml: "5px" }}>
-                                Edit
-                            </Typography>
-                        </Box>
-                    </Link>
+                        }}
+                    >
+                        <DeleteOutlineOutlinedIcon />
+                        <Typography variant="body1" color={colors.grey[100]} sx={{ ml: "5px" }}>
+                            Delete
+                        </Typography>
+                    </Box>
                 );
             },
         },
-        
     ];
     
       

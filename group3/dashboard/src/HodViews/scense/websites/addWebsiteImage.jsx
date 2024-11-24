@@ -22,13 +22,8 @@ import CK from '../../../Editor/ck';
 const AddWebsiteImage = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    const [image, setImage] = useState(null);
-
-    const [categories, setCategories] = useState([]); // to store the list of categories    
-    const [postShortDescription, setPostShortDescription] = useState(null);
+    const [imageTitle, setImageTitle] = useState(null);
     const [tag, setTag] = useState(null);
-    const [title, setTitle] = useState(null);
-    const [postSlug, setPostSlug] = useState(null);
     const [status, setStatus] = useState(null);
     const [date, setDate] = useState(null);
     const navigate = useNavigate();
@@ -60,14 +55,14 @@ const AddWebsiteImage = () => {
 
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
-        setImage(selectedImage);
+        setImageTitle(selectedImage);
     };
 
     const handleAddBlog = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addWebsiteImageAdmin(place, postShortDescription, tag, title, postSlug, content, status, date, image);
+          const success = await SaveItemsAdmin.addWebsiteImageAdmin(imageTitle,place, tag, status, date);
           
           if (success) {
             navigate("/website-components-admin");
@@ -102,11 +97,11 @@ const AddWebsiteImage = () => {
         </Dialog>
         <Header title="Add Image" subtitle="Please Fill All the Fields" />
             
-        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate onSubmit={handleAddBlog}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }} component="form" noValidate >{/*onSubmit={handleAddBlog}*/}
                 <TextField
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={(e) => setImageTitle(e.target.value)}
                 label="Enter Image Title"
-                id="title"
+                id="imageTitle"
                 sx={{ m: 1, width: '30.5%' }}
                 variant="filled"
                 />

@@ -141,7 +141,7 @@ hr {
   background-color: #608dfd;
 }
 .section-title {
-  margin-bottom: 70px;
+  margin-bottom: 20px;
 }
 .section-title h2 {
   position: relative;
@@ -208,7 +208,7 @@ a:focus,
   display: table;
   width: 100%;
   padding: 0;
-  background: url(../img/intro-bg.jpg) center center no-repeat;
+  background: url(../img/pastry.jpeg) center center no-repeat;
   background-color: #e5e5e5;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -219,9 +219,9 @@ a:focus,
   background: rgba(0, 0, 0, 0.2);
 }
 .intro h1 {
-  font-family: "Raleway", sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #fff;
-  font-size: 82px;
+  font-size: 50px;
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 0;
@@ -233,7 +233,7 @@ a:focus,
 }
 .intro p {
   color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 300;
   line-height: 30px;
   margin: 0 auto;
@@ -247,9 +247,16 @@ header .intro-text {
 /* Features Section */
 #features {
   background: #f6f6f6;
+  padding-bottom: 30px;
 }
+
+.section-title h2{
+  padding-top: 20px;
+}
+
 #features i.fa {
   font-size: 38px;
+  margin-top: 10px;
   margin-bottom: 20px;
   transition: all 0.5s;
   color: #fff;

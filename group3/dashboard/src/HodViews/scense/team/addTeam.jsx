@@ -51,7 +51,7 @@ const AddTeam = () => {
         event.preventDefault(); // Prevent the default form submission behavior
       
         try {
-          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, userName, phone, image);
+          const success = await SaveItemsAdmin.addTeamSave(email, password, firstName, lastName, phone, userName, image);
           
           if (success) {
             navigate("/dashboard-admin");
