@@ -12,7 +12,7 @@ public class users {
         private String phoneNumber;
         private String userEmail;
         private String userPassword;
-        private String userimage;
+        private String userImage;
 
         public users() {}
 
@@ -23,7 +23,7 @@ public class users {
             this.userName=userName;
             this.userEmail=userEmail;
             this.userPassword=userPassword;
-            this.userimage=userImage;
+            this.userImage=userImage;
         }
         public String getID() {
             return id;
@@ -86,11 +86,11 @@ public class users {
     
         
         public String getUserImage() {
-            return userimage;
+            return userImage;
         }
     
         public void setUserImage(String userImage) {
-            this.userimage = userImage;
+            this.userImage = userImage;
         }
     }
 
