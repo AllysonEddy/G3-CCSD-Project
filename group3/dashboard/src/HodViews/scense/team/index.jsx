@@ -8,44 +8,38 @@ import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 import Header from "../../../components/Header";
 import React, { useState, useEffect } from "react";
-import GetItemsAdmin from "../../getItemAdmin";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import DeleteUser from '../../deleteUser';
+import axios from 'axios';
 
 const TeamAdmin = () => {
-    const [teamDeatails, setTeamDetails] = useState([]);
+    const API_BASE_URL = 'http://localhost:8082';
+    const token = localStorage.getItem('jwtToken');
+    const username = localStorage.getItem('userName');
+    const [teamDetails, setTeamDetails] = useState([]);
+
+    axios.defaults.withCredentials = true;
 
     useEffect(() => {
-        GetItemsAdmin.getTeamDataAdmin()
-            .then((result) => {
-                console.log('Raw data from server:', result);
-                if (!result || result.length === 0) {
-                    console.log('No data received from server');
-                    return;
-                }
-                const teamData = result.map(user => {
-                    console.log('Processing user:', user);
-                    if (!user.firstName || !user.lastName) {
-                        console.log('Missing name data for user:', user);
-                    }
-                    return {
-                        id: user.id || 'No ID',
-                        name: user.firstName && user.lastName 
-                            ? `${user.firstName} ${user.lastName}`
-                            : 'Name Not Available',
-                        phone: user.phoneNumber || 'No Phone',
-                        email: user.userEmail || 'No Email',
-                        access: "Teacher",
-                        userImage: user.userImage || null,
-                    };
-                });
-                console.log('Processed team data:', teamData);
-                setTeamDetails(teamData);
-            })
-            .catch((error) => {
-                console.error("Error fetching team data:", error);
-            });
+      // Fetch all products from the API using axios
+      axios.get(`${API_BASE_URL}/api/users`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      .then(response => {
+        // Check if the response data is an array
+        if (Array.isArray(response.data)) {
+          setTeamDetails(response.data);
+        } else {
+          console.error('Expected an array but got:', response.data);
+          setTeamDetails([]); // Set to an empty array if the response is not an array
+        }
+      })
+      .catch(error => console.error('Error fetching team details:', error));
     }, []);
+
     
     
 
@@ -53,44 +47,14 @@ const TeamAdmin = () => {
     const colors = tokens(theme.palette.mode);
     
 
-
     const columns = [
-        { field: "id", headerName: "ID" },
+        { field: "userId", headerName: "ID" },
         { field: "name", headerName: "NAME", flex: 1, cellClassName: "name-column--cell" },
         { field: "phone", headerName: "PHONE#", flex: 1 },
         { field: "email", headerName: "EMAIL", flex: 1 },
         {
-            field: "access",
-            headerName: "USER IMAGE",
-            flex: 1,
-            renderCell: ({ row: { userImage } }) => {
-                return (
-                    <Box
-                        width="60%"
-                        m="0 auto"
-                        p="5px"
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                    >
-                        {userImage ? (
-                            <img
-                                src={userImage}
-                                alt="User"
-                                style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-                            />
-                        ) : (
-                            <Typography variant="body1" color="textSecondary">
-                                No Image
-                            </Typography>
-                        )}
-                    </Box>
-                );
-            },
-        },
-        {
-            field: "delete",
-            headerName: "DELETE",
+            // field: "delete",
+            // headerName: "DELETE",
             flex: 1,
             renderCell: ({ row }) => {
                 return (
@@ -98,61 +62,59 @@ const TeamAdmin = () => {
                         width="40%"
                         m="0 auto"
                         p="5px"
-                        display="flex"
                         justifyContent="center"
                         alignItems="center"
-                        backgroundColor={colors.redAccent[600]}
-                        borderRadius="4px"
-                        sx={{ 
-                            cursor: 'pointer',
-                            '&:hover': { backgroundColor: colors.redAccent[700] }
-                        }}
-                        onClick={async () => {
-                            if (window.confirm('Are you sure you want to delete this user?')) {
-                                try {
-                                    await DeleteUser.deleteUserAdmin(row.id);
-                                    const updatedTeamDetails = teamDeatails.filter(user => user.id !== row.id);
-                                    setTeamDetails(updatedTeamDetails);
-                                    alert('User deleted successfully!');
-                                } catch (error) {
-                                    console.error('Failed to delete user:', error);
-                                    alert(error.message);
-                                }
-                            }
-                        }}
+                        // backgroundColor={row.access === "admin" ? colors.greenAccent[600] : colors.greenAccent[700]}
+                        // borderRadius="4px"
                     >
-                        <DeleteOutlineOutlinedIcon />
+                            {/* delete func here onclick */}
+
+
+                        {/* <DeleteOutlinedIcon onClick={() => handleDelete(row.id)}/> 
                         <Typography variant="body1" color={colors.grey[100]} sx={{ ml: "5px" }}>
                             Delete
-                        </Typography>
+                        </Typography> */}
                     </Box>
                 );
             },
         },
     ];
-    
-      
+
+    // Map the teamDetails to match the DataGrid row structure
+    const rows = teamDetails.map((user) => {
+        // Ensure `userId` is set as a unique id
+        const userId = user.id || `user-${Math.random()}`; // Fallback if userId is undefined
+        const name = user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : "Unknown Name"; // Handle undefined names
+
+        return {
+            id: userId, // Ensure each row has a unique `id`
+            name: name, // Concatenate first and last name, fallback to "Unknown Name"
+            phone: user.phoneNumber || "N/A", // Fallback if phone number is missing
+            email: user.userEmail || "N/A", // Fallback if email is missing
+        };
+    });
 
     return (
         <Box>
             <Header title="Team" subtitle="Managing the Team" />
             <Box>
                 <DataGrid
-                    rows={teamDeatails}
+                    rows={rows} // Use the mapped rows here
                     columns={columns}
                     pageSize={12}
                 />
             </Box>
             <Link to="/AddTeam" style={{ textDecoration: 'none' }}>
                 <Grid container justifyContent="flex-end">
-                    <Box sx={{ m: 2, }}>
-                        <Button 
+                    <Box sx={{ m: 2 }}>
+                        <Button
                             startIcon={<PersonAddAltOutlinedIcon />}
                             justifyContent="center"
                             variant="contained"
                             size="large"
-                            color = "success"
-                            >Add Team Member
+                            color="success"
+                        >
+                            Add Team Member
                         </Button>
                     </Box>
                 </Grid>
@@ -162,3 +124,37 @@ const TeamAdmin = () => {
 };
 
 export default TeamAdmin;
+
+// {
+        //     field: "access",
+        //     headerName: "USER IMAGE",
+        //     flex: 1,
+        //     renderCell: ({ row: { userImage } }) => {
+        //         return (
+        //             <Box
+        //                 width="60%"
+        //                 m="0 auto"
+        //                 p="5px"
+        //                 display="flex"
+        //                 justifyContent="center"
+        //                 alignItems="center"
+        //             >
+        //                 {userImage ? (
+        //         <img
+        //             src={`data:image/jpeg;base64,${userImage}`}
+        //             alt="User"
+        //             style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+        //             onError={(e) => {
+        //                 console.error("Image load error:", e);
+        //                 e.target.src = ""; // Fallback to empty if error
+        //                         }}
+        //                     />
+        //                 ) : (
+        //                     <Typography variant="body1" color="textSecondary">
+        //                         No Image
+        //                     </Typography>
+        //                 )}
+        //             </Box>
+        //         );
+        //     },
+        // },

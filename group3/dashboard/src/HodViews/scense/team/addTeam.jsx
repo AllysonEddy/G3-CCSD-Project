@@ -25,7 +25,6 @@ const AddTeam = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [image, setImage] = useState(null);
-    const [imageUrl, setImageUrl] = useState(null);
     const [showPassword, setShowPassword] = React.useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,7 +45,15 @@ const AddTeam = () => {
     const handleImageChange = (event) => {
         const selectedImage = event.target.files[0];
         setImage(selectedImage);
-        setImageUrl(selectedImage ? URL.createObjectURL(selectedImage) : null);
+        // if (selectedImage) {
+        //     const reader = new FileReader();
+        //     reader.onloadend = () =>{
+        //         const base64String = reader.result.replace(/^data:image\/\w+;base64,/, '');
+        //         setImage(base64String);
+        //     };
+        //     reader.readAsDataURL(selectedImage);
+        // }
+        
     };
 
     const handleAddTeam = async (event) => {
@@ -182,7 +189,6 @@ const AddTeam = () => {
                     />
                     <FormHelperText id="image-upload-helper-text">Select an image file</FormHelperText>
                 </FormControl>
-                {imageUrl && <img src={imageUrl} alt="Selected" style={{ width: '100px', height: '100px' }} />}
                 <FormControl sx={{ m: 1, width: '93%' }} variant="filled">
                 
                 <Button

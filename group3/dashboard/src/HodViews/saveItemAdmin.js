@@ -17,35 +17,45 @@ const SaveItemsAdmin = {
     const token = await localStorage.getItem("jwtToken");
 
     // Create image URL if image is provided
-    const imageUrl = image ? URL.createObjectURL(image) : null;
+    //const imageUrl = image ? URL.createObjectURL(image) : null;
 
     try {
       const formData = new FormData();
-      formData.append("userName", userName);
-      formData.append("userEmail", email);
-      formData.append("userPassword", password);
-      formData.append("firstName", firstName);
-      formData.append("lastName", lastName);
-      formData.append("phoneNumber", phone);
-      //formData.append('userImage', image);
-      formData.append("userImage", imageUrl);
 
-      const response = await axios.post(`${API_BASE_URL}/api/users`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      formData.append('userName', userName);
+      formData.append('userEmail', email);
+      formData.append('userPassword', password);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      formData.append('phoneNumber', phone);
+      if (image) {
+        formData.append('userImage', image);
+      }
+      //formData.append('userImage', imageUrl);
 
-      if (response.status >= 200 && response.status < 300) {
+      const response = await axios.post(
+        `${API_BASE_URL}/api/users`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+
+      
+      if (response.status === 200) {
         return response.data;
       }
+
       throw new Error("Failed to save team member");
     } catch (error) {
       console.error("Error details:", error.response?.data || error.message);
       throw new Error(
         error.response?.data?.message || "Failed to save team member"
       );
+
     }
   },
 
@@ -110,36 +120,38 @@ const SaveItemsAdmin = {
     }
   },
   async addGalleryAdmin(title, description, date, image) {
-    const token = await localStorage.getItem("jwtToken");
-    const imageUrl = image ? URL.createObjectURL(image) : null;
+
+    const token = localStorage.getItem('jwtToken');
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('date', date);
+
+    if (image) {
+      formData.append('image', image); // Appends the image file
+    }
+
+ 
 
     try {
-      // Create FormData object to handle the data (including image)
-      const formData = new FormData();
-      formData.append("title", title);
-      formData.append("description", description);
-      formData.append("date", date);
-
-      // Append image if it's provided
-      if (image) {
-        formData.append("image", imageUrl); // 'image' should match the server key
-      }
-
       const response = await axios.post(
         `${API_BASE_URL}/api/gallery`,
         formData,
         {
           headers: {
+
+            'Content-Type': 'multipart/form-data',
             "Content-Type": "application/json", // Set content type to multipart/form-data for file uploads
+
             Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      if (response.status === 200) {
-        return response.data;
-      }
+      return response.data;
     } catch (error) {
+
       if (error.response) {
         console.error("Server responded with an error:", error.response.data);
       } else if (error.request) {
@@ -147,6 +159,7 @@ const SaveItemsAdmin = {
       } else {
         console.error("Error setting up the request:", error.message);
       }
+
       throw error;
     }
   },
@@ -154,12 +167,14 @@ const SaveItemsAdmin = {
     const imageUrl = image ? URL.createObjectURL(image) : null;
     const formData = new FormData();
 
-    formData.append("imageTitle", title);
+    
+    formData.append('imageTitle', title);
+    formData.append('image', image);
+    formData.append('tag', tag);
+    formData.append('place', place);
+    formData.append('status', status);
+    formData.append('date', date);
 
-    formData.append("tag", tag);
-    formData.append("place", place);
-    formData.append("status", status);
-    formData.append("date", date);
 
     try {
       const response = await axios.post(
