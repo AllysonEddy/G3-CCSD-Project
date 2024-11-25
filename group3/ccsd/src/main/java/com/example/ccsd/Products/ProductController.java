@@ -1,6 +1,7 @@
 package com.example.ccsd.Products;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,16 @@ public class ProductController {
 
     @GetMapping("/drinks")
     public List<Product> getAllProducts(){
-        return productService.getAllProduct();
+        List<Product> productsList = productService.getAllProduct();  // Get all products
+    
+        // Process each product in the list
+        return productsList.stream()
+                .map(product -> {
+                    // Add Base64 encoded image to each product
+                    product.setProductImage64String(product.getImageAsBase64());
+                    return product;
+                })
+                .collect(Collectors.toList());  // Collect the processed products back into a list
     }
 
     @GetMapping("/{id}")

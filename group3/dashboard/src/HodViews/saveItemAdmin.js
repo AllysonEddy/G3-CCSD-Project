@@ -1,19 +1,27 @@
-import axios from 'axios';
+import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-const API_BASE_URL = 'http://localhost:8082';
-
+const API_BASE_URL = "http://localhost:8082";
 
 const SaveItemsAdmin = {
-  async addTeamSave(email, password, firstName, lastName, phone, userName, image) {
-    const token = await localStorage.getItem('jwtToken');
-    
+  async addTeamSave(
+    email,
+    password,
+    firstName,
+    lastName,
+    phone,
+    userName,
+    image
+  ) {
+    const token = await localStorage.getItem("jwtToken");
+
     // Create image URL if image is provided
     //const imageUrl = image ? URL.createObjectURL(image) : null;
 
     try {
       const formData = new FormData();
+
       formData.append('userName', userName);
       formData.append('userEmail', email);
       formData.append('userPassword', password);
@@ -40,15 +48,14 @@ const SaveItemsAdmin = {
       if (response.status === 200) {
         return response.data;
       }
+
+      throw new Error("Failed to save team member");
     } catch (error) {
-      if (error.response) {
-        console.error('Server responded with an error:', error.response.data);
-      } else if (error.request) {
-        console.error('No response received:', error.request);
-      } else {
-        console.error('Error setting up the request:', error.message);
-      }
-      throw error;
+      console.error("Error details:", error.response?.data || error.message);
+      throw new Error(
+        error.response?.data?.message || "Failed to save team member"
+      );
+
     }
   },
 
@@ -113,6 +120,7 @@ const SaveItemsAdmin = {
     }
   },
   async addGalleryAdmin(title, description, date, image) {
+
     const token = localStorage.getItem('jwtToken');
     const formData = new FormData();
 
@@ -124,13 +132,18 @@ const SaveItemsAdmin = {
       formData.append('image', image); // Appends the image file
     }
 
+ 
+
     try {
       const response = await axios.post(
         `${API_BASE_URL}/api/gallery`,
         formData,
         {
           headers: {
+
             'Content-Type': 'multipart/form-data',
+            "Content-Type": "application/json", // Set content type to multipart/form-data for file uploads
+
             Authorization: `Bearer ${token}`,
           },
         }
@@ -138,14 +151,22 @@ const SaveItemsAdmin = {
 
       return response.data;
     } catch (error) {
-      console.error('Error uploading gallery item:', error);
+
+      if (error.response) {
+        console.error("Server responded with an error:", error.response.data);
+      } else if (error.request) {
+        console.error("No response received:", error.request);
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
+
       throw error;
     }
   },
   async addWebsiteImageAdmin(place, tag, title, status, date, image) {
-
     const imageUrl = image ? URL.createObjectURL(image) : null;
     const formData = new FormData();
+
     
     formData.append('imageTitle', title);
     formData.append('image', image);
@@ -154,63 +175,57 @@ const SaveItemsAdmin = {
     formData.append('status', status);
     formData.append('date', date);
 
+
     try {
-        const response = await axios.post(
-            `${API_BASE_URL}/api/websiteimages`,
+      const response = await axios.post(
+        `${API_BASE_URL}/api/websiteimages`,
 
-            formData,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ${token}',
-                },
-            }
-        );
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer ${token}",
+          },
+        }
+      );
 
-        return response.data;
-
-    }catch (error) {
-
-        console.error('Error uploading image:', error);
-        throw error;
+      return response.data;
+    } catch (error) {
+      console.error("Error uploading image:", error);
+      throw error;
     }
   },
   async addWebsiteTextAdmin(title, description, status) {
-    const token = await localStorage.getItem('jwtToken');
-    const username = await localStorage.getItem('userName');
+    const token = await localStorage.getItem("jwtToken");
+    const username = await localStorage.getItem("userName");
 
     try {
-
       const formData = new FormData();
-      formData.append('author', username);
-      formData.append('description', description);
-      formData.append('title', title);
-     
-      formData.append('status', status);
-    
-   
+      formData.append("author", username);
+      formData.append("description", description);
+      formData.append("title", title);
+
+      formData.append("status", status);
+
       const response = await axios.post(
         `${API_BASE_URL}/api/websitetext`,
         formData,
         {
           headers: {
-            'Content-Type': 'application/json', // Set content type to multipart/form-data for file uploads
+            "Content-Type": "application/json", // Set content type to multipart/form-data for file uploads
             Authorization: `Bearer ${token}`,
-          },  
+          },
         }
       );
 
       if (response.status === 200) {
         return response.data;
       }
-
     } catch (error) {
-      console.error('Error in addWebsiteTextAdmin:', error);
+      console.error("Error in addWebsiteTextAdmin:", error);
       throw error;
     }
   },
-
-  
 };
 
 export default SaveItemsAdmin;
