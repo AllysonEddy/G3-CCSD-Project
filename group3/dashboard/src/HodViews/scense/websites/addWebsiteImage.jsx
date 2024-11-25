@@ -58,7 +58,8 @@ const AddWebsiteImage = () => {
 
     const handleAddImage = async (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
-      
+
+
         try {
           const success = await SaveItemsAdmin.addWebsiteImageAdmin(imageTitle,place, tag, status, date, image );
             
@@ -70,8 +71,10 @@ const AddWebsiteImage = () => {
           }
         } catch (error) {
           // Handle network or other errors
-          console.error("Saving Error:", error);
-          alert("An error occurred while saving.");
+        //   console.error("Saving Error:", error);
+        //   alert("An error occurred while saving.");
+            navigate("/website-components-admin");
+
         }
       }
 

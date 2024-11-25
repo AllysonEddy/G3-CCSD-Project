@@ -120,7 +120,6 @@ const SaveItemsAdmin = {
     }
   },
   async addGalleryAdmin(title, description, date, image) {
-
     const token = localStorage.getItem('jwtToken');
     const formData = new FormData();
 
@@ -132,18 +131,13 @@ const SaveItemsAdmin = {
       formData.append('image', image); // Appends the image file
     }
 
- 
-
     try {
       const response = await axios.post(
         `${API_BASE_URL}/api/gallery`,
         formData,
         {
           headers: {
-
             'Content-Type': 'multipart/form-data',
-            "Content-Type": "application/json", // Set content type to multipart/form-data for file uploads
-
             Authorization: `Bearer ${token}`,
           },
         }
@@ -151,15 +145,7 @@ const SaveItemsAdmin = {
 
       return response.data;
     } catch (error) {
-
-      if (error.response) {
-        console.error("Server responded with an error:", error.response.data);
-      } else if (error.request) {
-        console.error("No response received:", error.request);
-      } else {
-        console.error("Error setting up the request:", error.message);
-      }
-
+      console.error('Error uploading gallery item:', error);
       throw error;
     }
   },
@@ -174,6 +160,10 @@ const SaveItemsAdmin = {
     formData.append('place', place);
     formData.append('status', status);
     formData.append('date', date);
+
+    if (image) {
+      formData.append('image', image); // Appends the image file
+    }
 
 
     try {
@@ -191,7 +181,7 @@ const SaveItemsAdmin = {
 
       return response.data;
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error("Upload success", error);
       throw error;
     }
   },
