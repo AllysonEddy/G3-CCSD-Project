@@ -7,6 +7,7 @@ const API_BASE_URL = 'http://localhost:8082';
 const GetItemsAdmin = {
   async getTeamDataAdmin() {
     const token = await localStorage.getItem('jwtToken');
+    const username = await localStorage.getItem('userName');
 
     try {
       const response = await axios.get(
@@ -78,7 +79,7 @@ const GetItemsAdmin = {
 
     try {
       const response = await axios.get(
-        `${API_BASE_URL}/view_clients_admin`,
+        `${API_BASE_URL}/api/users`,
         {
           // request headers
           headers: {

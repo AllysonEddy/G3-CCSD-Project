@@ -1,6 +1,7 @@
 package com.example.ccsd.Users;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.Base64;
 
 @Document(collection = "users")
 public class users {
@@ -12,19 +13,33 @@ public class users {
         private String phoneNumber;
         private String userEmail;
         private String userPassword;
-        private String userImage;
-
+        private byte[] userImage;
+        private String userImage64String;
         public users() {}
 
-        public users(String firstName, String lastName,String userName, String phoneNumber, String userEmail, String userPassword, String userImage) {
+        public users(String id, String firstName, String lastName,String userName, String phoneNumber, String userEmail, String userPassword, byte[] userImage) {
+            this.id=id;
             this.firstName=firstName;
             this.lastName=lastName;
             this.phoneNumber=phoneNumber;
             this.userName=userName;
             this.userEmail=userEmail;
             this.userPassword=userPassword;
-            this.userImage=userImage;
+            this.userImage = userImage;
         }
+
+        public String getUserImage64() {
+            return userImage != null ? Base64.getEncoder().encodeToString(userImage) : null;
+        }
+
+        public void setUserImage64String(String userImage64String) {
+            this.userImage64String = userImage64String;
+        }
+
+        public String getUserImage64String() {
+            return userImage64String;
+        }
+        
         public String getID() {
             return id;
         }
@@ -85,14 +100,13 @@ public class users {
         }
     
         
-        public String getUserImage() {
-            return userImage;
-        }
-    
-        public void setUserImage(String userImage) {
-            this.userImage = userImage;
-        }
+       public byte[] getUserImage() { 
+        return userImage;
     }
+    public void setUserImage(byte[] userImage){
+        this.userImage=userImage;
+    }
+ }
 
 
     
